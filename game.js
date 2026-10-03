@@ -4416,9 +4416,7 @@ class GameEngine {
                         const packageId = window.TEBEX_PACKAGE_IDS[type] || '';
                         let checkoutUrl = window.TEBEX_STORE_URL;
                         if (packageId) {
-                            checkoutUrl += `/checkout/packages/${packageId}?username=${encodeURIComponent(username)}`;
-                        } else {
-                            checkoutUrl += `?username=${encodeURIComponent(username)}`;
+                            checkoutUrl += `/package/${packageId}`;
                         }
                         window.open(checkoutUrl, '_blank');
                         this.ui.showAchievementToast('Opening Tebex', 'Please complete payment in the new window...');
