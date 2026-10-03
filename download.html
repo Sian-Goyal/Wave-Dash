@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave Dash - Mobile Download</title>
+    <link rel="icon" type="image/png" href="favicon.png?v=4">
+    <link rel="shortcut icon" type="image/png" href="favicon.png?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff007f;
+            --neon-blue: #00f3ff;
+            --neon-yellow: #fffb00;
+            --bg-dark: #0a0a16;
+            --panel-bg: rgba(255, 255, 255, 0.04);
+            --panel-border: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        /* Neon background grids */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 90vw;
+            width: 380px;
+            padding: 35px 25px;
+            background: rgba(13, 13, 30, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid var(--neon-pink);
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.25);
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 0 0 10px 0;
+            background: linear-gradient(135deg, #fff 30%, var(--neon-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+        p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            margin: 0 0 30px 0;
+            line-height: 1.6;
+        }
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--neon-pink) 0%, #ff0055 100%);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+        }
+        .btn-download:active {
+            transform: translateY(1px);
+        }
+        .footer-note {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 25px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="container">
+        <div style="font-size: 44px; margin-bottom: 15px;">🚀</div>
+        <h1>WAVE DASH</h1>
+        <p>Get the latest mobile update! Tap the button below to download the installation APK package directly to your phone.</p>
+        
+        <!-- Big direct APK download trigger link -->
+        <a href="https://wavedashgame-1.vercel.app/app-debug.apk.apk" class="btn-download" id="apk-download-link">
+            📥 DOWNLOAD LATEST APK
+        </a>
+        
+        <div class="footer-note">
+            Note: Once the download completes, tap the notification or look in your Downloads directory to install the APK update.
+        </div>
+    </div>
+</body>
+</html>

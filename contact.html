@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Wave Dash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080710;
+            --panel-bg: rgba(20, 20, 30, 0.85);
+            --panel-border: rgba(255, 230, 0, 0.2);
+            --neon-yellow: #fffb00;
+            --neon-blue: #00f3ff;
+            --text-main: #ffffff;
+            --text-muted: #8b8a9f;
+        }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--panel-bg);
+            border: 2px solid var(--panel-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 45px rgba(255, 230, 0, 0.15);
+            box-sizing: border-box;
+        }
+        h1 {
+            color: var(--neon-yellow);
+            margin: 0 0 20px 0;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+            text-align: center;
+        }
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 20px;
+        }
+        strong {
+            color: #fff;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-back:hover {
+            border-color: var(--neon-yellow);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(255, 230, 0, 0.2);
+        }
+        a {
+            color: var(--neon-blue);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        tr {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        tr:last-child {
+            border-bottom: none;
+        }
+        td {
+            padding: 12px 0;
+            font-size: 15px;
+        }
+        .label {
+            font-weight: bold;
+            width: 140px;
+            color: var(--neon-yellow);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="btn-back">← Back to Game</a>
+        <h1>📜 CONTACT US</h1>
+        <p>For any issues, payment queries, or general support, you can reach out to us using the details below:</p>
+        
+        <table>
+            <tr>
+                <td class="label">Merchant Name:</td>
+                <td>Saniya Goyal (Sian Goyal)</td>
+            </tr>
+            <tr>
+                <td class="label">Support Email:</td>
+                <td><a href="mailto:khadariasian@gmail.com">khadariasian@gmail.com</a></td>
+            </tr>
+            <tr>
+                <td class="label">Address:</td>
+                <td>Rajasthan, India</td>
+            </tr>
+            <tr>
+                <td class="label">Operating Hours:</td>
+                <td>
+                    Mon - Sat: 6:00 AM - 7:30 AM & 2:30 PM - 10:00 PM IST<br>
+                    Sun: 8:00 AM - 10:00 PM IST
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Response Time:</td>
+                <td>Queries will be answered within 10 hours.</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

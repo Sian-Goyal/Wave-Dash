@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- FAVICON (Browser Tab Logo & Google search result logo) -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=13">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png?v=13">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png?v=13">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=13">
+    <link rel="apple-touch-icon" href="favicon-192.png?v=13">
+
+    <!-- PRIMARY SEO TAGS -->
+    <title>Wave Dash - Free Online Arcade Game | Play in Browser</title>
+    <meta name="description" content="Play Wave Dash, a free browser-based neon rhythm platformer game. Fly your spaceship through glowing neon tunnels, dodge spikes, and survive the beat. Made by Sian Goyal. No download needed!">
+    <meta name="keywords" content="wave dash, wave dash game, wave dash online, neon platformer, geometry dash browser, rhythm game, free online game, HTML5 game, Sian Goyal game, neon game, spaceship game, browser game, 2d platformer">
+    <meta name="author" content="Sian Goyal">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wavedashgame-1.vercel.app/">
+    <meta name="thumbnail" content="https://wavedashgame-1.vercel.app/favicon-192.png?v=13">
+    <meta name="google-site-verification" content="WD1gID9gCJX7vz0DvDdz8WNk5jnAF-VMOED17P2kSp4" />
+    <meta name="google-site-verification" content="ChcE2a0McIYHX7nJKhl9LLQ-Xay_o6sVpzGJXWJiRno" />
+
+    <!-- OPEN GRAPH (Facebook, Discord, WhatsApp previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Wave Dash - Free Online Arcade Game | Play in Browser">
+    <meta property="og:description" content="Fly through glowing neon tunnels, dodge spikes and sawblades in this free browser rhythm game. No download needed. Made by Sian Goyal.">
+    <meta property="og:image" content="https://wavedashgame-1.vercel.app/favicon-192.png?v=13">
+    <meta property="og:url" content="https://wavedashgame-1.vercel.app/">
+    <meta property="og:site_name" content="Wave Dash Game">
+    <meta property="og:locale" content="en_US">
+
+    <!-- TWITTER CARD (Twitter/X previews) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wave Dash - Free Online Arcade Game | Play in Browser">
+    <meta name="twitter:description" content="Free browser game by Sian Goyal. Fly through neon tunnels, dodge spikes, beat the rhythm!">
+    <meta name="twitter:image" content="https://wavedashgame-1.vercel.app/favicon-192.png?v=13">
+
+    <!-- STRUCTURED DATA (Tells Google exactly what this page is & logo location) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wave Dash Game",
+        "url": "https://wavedashgame-1.vercel.app/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Wave Dash",
+        "url": "https://wavedashgame-1.vercel.app/",
+        "logo": "https://wavedashgame-1.vercel.app/favicon-192.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Wave Dash",
+        "description": "A free browser-based neon rhythm platformer game where you fly a spaceship through glowing tunnels, dodge spikes and sawblades synchronized to music.",
+        "genre": ["Platformer", "Rhythm Game", "Action"],
+        "gamePlatform": "Web Browser",
+        "applicationCategory": "Game",
+        "operatingSystem": "Any",
+        "author": {
+            "@type": "Person",
+            "name": "Sian Goyal"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css?v=32">
+    <!-- GOOGLE ADSENSE INTEGRATION -->
+    <script async 
+      data-ad-client="ca-pub-3291775967524458"
+      data-ad-frequency-hint="30s"
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" 
+      crossorigin="anonymous">
+    </script>
+    <script>
+        window.adsbygoogle = window.adsbygoogle || [];
+        var adBreak = adConfig = function(o) { adsbygoogle.push(o); };
+        adConfig({
+            preloadAdBreaks: 'on',
+            sound: 'on',
+            onLoad: function() {
+                console.log("AdSense H5 Games Ads ready.");
+            }
+        });
+    </script>
+    <!-- PAYPAL JAVASCRIPT SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZ6mKAOhDrm0p5VQ-8WC7LO5ETGNK-w78Jck1KAeV8VbeB2uoW5lmiuwOZAAuBC4GuxKajrXPk1igYLz&currency=USD" data-sdk-integration-source="button-factory"></script>
+</head>
+<body>
+
+    <!-- Main aspect ratio constrained wrapper -->
+    <div id="game-container">
+        
+        <!-- HTML5 Canvas drawing plane -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- UI Interactive overlay layer -->
+        <div id="ui-layer">
+
+            <!-- Rotate Device Hint (Mobile Web Browser Only) -->
+            <div id="rotate-device-hint" style="position: absolute; top: 15px; right: 15px; display: none; align-items: center; gap: 8px; background: rgba(255, 0, 127, 0.15); border: 1.5px solid var(--neon-pink); box-shadow: var(--shadow-glow-pink); padding: 6px 14px; border-radius: 20px; font-family: 'Outfit'; font-size: 10px; font-weight: 800; color: #fff; z-index: 1005; pointer-events: none; animation: pulseGlowPink 1.5s infinite alternate;">
+                <span>🔄 ROTATE DEVICE FOR BETTER EXPERIENCE</span>
+            </div>
+            
+            <!-- Global Floating Ticket HUD (Top-Left Corner) -->
+            <div id="global-coin-hud" style="position: absolute; top: 15px; left: 15px; display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.65); border: 1.5px solid var(--neon-blue); box-shadow: 0 0 10px rgba(0,243,255,0.15); padding: 6px 16px; border-radius: 20px; font-family: 'Outfit'; font-size: 13px; font-weight: 800; color: #fff; z-index: 1005; pointer-events: auto; transition: opacity 0.2s;">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 15px;">🎟️</span>
+                    <span id="global-ticket-balance">0</span>
+                </div>
+                <div style="width: 1.5px; height: 14px; background: rgba(255,255,255,0.25);"></div>
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span style="font-size: 15px;">🪙</span>
+                    <span id="global-coin-balance">0</span>
+                </div>
+                <span id="unlimited-coin-btn" style="display: none; cursor: pointer; font-size: 11px; color: var(--neon-yellow); font-weight: 900; margin-left: 6px; padding: 2px 8px; background: rgba(255,251,0,0.12); border: 1px solid rgba(255,251,0,0.35); border-radius: 12px; font-family: 'Outfit'; text-shadow: 0 0 5px rgba(255,251,0,0.5);">♾️</span>
+            </div>
+
+            <!-- Global Investment Status Widget -->
+            <div id="global-invest-hud" style="position: absolute; top: 52px; left: 15px; display: none; align-items: center; gap: 6px; background: rgba(0,0,0,0.7); border: 1px solid rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 12px; font-family: 'Outfit'; font-size: 10px; font-weight: 800; color: #00ff87; z-index: 1005; pointer-events: none; transition: all 0.2s;">
+                <span>📈 LOADING INVESTMENT...</span>
+            </div>
+
+            <!-- Replay HUD Overlay -->
+            <div id="replay-hud" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: none; align-items: center; gap: 15px; background: rgba(0,0,0,0.85); border: 2px solid var(--neon-blue); box-shadow: var(--shadow-glow-blue); padding: 8px 18px; border-radius: 30px; font-family: 'Outfit'; font-size: 13px; font-weight: 700; z-index: 1000; box-sizing: border-box; pointer-events: auto;">
+                <span style="color: var(--neon-blue); animation: blink 1.2s infinite; display: flex; align-items: center; gap: 6px;">
+                    <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 6px #ff0055;"></span>
+                    REPLAYING RECORDED RUN
+                </span>
+                <button class="btn btn-danger" id="btn-exit-replay" style="padding: 4px 12px; font-size: 11px; font-weight: 800; border-radius: 20px; background: #ff0055; border-color: #ff0055;">EXIT</button>
+            </div>
+            
+            <style>
+                @keyframes blink {
+                    0% { opacity: 0.4; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0.4; }
+                }
+            </style>
+
+            <!-- In-game Countdown Overlay -->
+            <div id="countdown-overlay" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center; background: rgba(0,0,0,0.45); z-index: 20; pointer-events: none;">
+                <div id="countdown-number" style="font-size: 120px; font-weight: 900; color: #00ff87; text-shadow: 0 0 30px rgba(0,255,135,0.8); font-family: 'Outfit'; transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);">3</div>
+            </div>
+
+            <!-- In-game HUD indicators -->
+            <div id="hud" style="opacity: 0;">
+                <div class="hud-left">
+                    <div class="hud-stat" id="hud-level-name" style="font-weight: 900; color: var(--neon-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Level 1</div>
+                    <div class="hud-stat" id="attempt-display">Attempt 1</div>
+                    <div class="hud-stat" id="coin-display">Coins: 0/3</div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">0%</div>
+                    
+                    <!-- HUD Practice mode checkpoint markers -->
+                    <div class="practice-indicators" id="practice-controls" style="display: none;">
+                        <span class="practice-badge">PRACTICE</span>
+                        <div class="hud-stat">Checkpoints: <span id="checkpoint-count">0</span></div>
+                        <button class="btn btn-success" id="btn-cp-add" style="padding: 2px 10px; font-size: 11px;">+ CP (Z)</button>
+                        <button class="btn btn-danger" id="btn-cp-remove" style="padding: 2px 10px; font-size: 11px;">- CP (X)</button>
+                    </div>
+                </div>
+
+                <div class="hud-right">
+                    <div class="hud-stat" id="fps-display">FPS: 60</div>
+                    <button class="btn btn-icon" id="btn-pause-hud" style="width: 40px; height: 40px; font-size: 14px;">Ⅱ</button>
+                </div>
+            </div>
+
+            <!-- SCREEN 1: Main Menu -->
+            <div class="screen active" id="main-menu-screen">
+                <div class="glass-panel" style="position: relative;">
+                    <!-- Top Right Status Row -->
+                    <div style="position: absolute; top: 15px; right: 20px; display: flex; align-items: center; gap: 10px; z-index: 10;">
+                        <!-- Update Indicator Badge -->
+                        <div id="menu-update-badge" style="display: none; align-items: center; gap: 8px; background: rgba(255, 0, 127, 0.15); border: 1.5px solid var(--neon-pink); box-shadow: var(--shadow-glow-pink); padding: 6px 14px; border-radius: 20px; font-family: 'Outfit'; font-size: 13px; font-weight: 700; color: #fff; cursor: pointer; animation: pulseGlowPink 1.5s infinite alternate;">
+                            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ff0055; box-shadow: 0 0 6px #ff0055; animation: blink 1.2s infinite;"></span>
+                            UPDATE AVAILABLE
+                        </div>
+
+                        <!-- User Status HUD -->
+                        <div id="menu-user-badge" style="display: none; align-items: center; gap: 8px; background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); padding: 6px 14px; border-radius: 20px; font-family: 'Outfit'; font-size: 13px; font-weight: 700; color: #fff;">
+                            <span id="menu-user-icon">👤</span>
+                            <span id="menu-username-display">Guest</span>
+                            <span id="menu-premium-badge" style="color: var(--neon-yellow); filter: drop-shadow(0 0 5px rgba(255,251,0,0.8)); display: none;">👑</span>
+                            <span id="menu-diamond-badge" style="color: #60efff; filter: drop-shadow(0 0 8px #00ffc4); display: none; font-size: 14px; font-weight: 900; vertical-align: middle;">💎</span>
+                        </div>
+                    </div>
+
+                    <!-- Guest Purchase Warning Banner -->
+                    <div id="guest-purchase-warning" style="display: none; align-items: center; justify-content: center; gap: 8px; background: rgba(255, 94, 0, 0.15); border: 1.5px solid #ff5e00; box-shadow: 0 0 10px rgba(255, 94, 0, 0.3); padding: 8px 12px; border-radius: 8px; font-family: 'Outfit'; font-size: 11px; font-weight: 700; color: #fff; cursor: pointer; margin: 15px auto 15px auto; max-width: 90%; text-align: center;">
+                        <span>⚠️ Playing as Guest: Click here to link your purchases to a permanent account so they are never lost!</span>
+                    </div>
+
+                    <h1>WAVE DASH</h1>
+                    <p>Experience the rhythm-fueled geometric neon adventure</p>
+                    
+                    <button class="btn btn-primary" id="btn-play" style="margin-bottom: 25px;">PLAY</button>
+                     <!-- Hidden inputs: BG photo — 4 separate modes -->
+                    <input type="file" id="bg-input-camera"  accept="image/*" capture="environment" style="display:none;">
+                    <input type="file" id="bg-input-selfie"  accept="image/*" capture="user"        style="display:none;">
+                    <input type="file" id="bg-input-gallery" accept="image/*"                       style="display:none;">
+                    <input type="file" id="bg-input-browse"  accept="image/*"                       style="display:none;">
+                    <!-- Hidden inputs: Ship photo — 4 separate modes -->
+                    <input type="file" id="ship-input-camera"  accept="image/*" capture="environment" style="display:none;">
+                    <input type="file" id="ship-input-selfie"  accept="image/*" capture="user"        style="display:none;">
+                    <input type="file" id="ship-input-gallery" accept="image/*"                       style="display:none;">
+                    <input type="file" id="ship-input-browse"  accept="image/*"                       style="display:none;">
+
+                    <!-- ===== PHOTO SOURCE PICKER POPUP (shared for bg & ship) ===== -->
+                    <div id="photo-source-popup" data-target="" style="display:none; position:fixed; inset:0; z-index:10000; align-items:center; justify-content:center; background:rgba(0,0,0,0.82); backdrop-filter:blur(8px);">
+                        <div style="background:#0d0d1a; border:1.5px solid rgba(255,255,255,0.15); border-radius:18px; padding:22px 20px; width:300px; max-width:92vw; box-shadow:0 0 40px rgba(0,243,255,0.15); text-align:center;">
+                            <div style="font-size:14px; font-weight:800; color:#fff; margin-bottom:6px;">📷 CHOOSE PHOTO SOURCE</div>
+                            <div style="font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:18px;">Select where you want to pick your image from</div>
+
+                            <!-- Camera option -->
+                            <button id="photo-source-camera" style="width:100%; display:flex; align-items:center; gap:14px; background:rgba(0,243,255,0.07); border:1.5px solid rgba(0,243,255,0.25); border-radius:12px; padding:14px 16px; cursor:pointer; font-family:'Outfit'; font-weight:700; color:#fff; margin-bottom:10px; transition:all 0.2s;">
+                                <span style="font-size:26px; flex-shrink:0;">📷</span>
+                                <span style="text-align:left;">
+                                    <span style="display:block; font-size:13px; font-weight:800;">BACK CAMERA</span>
+                                    <span style="display:block; font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); margin-top:2px;">Open device camera to take a photo</span>
+                                </span>
+                            </button>
+
+                            <!-- Selfie / Front camera option -->
+                            <button id="photo-source-selfie" style="width:100%; display:flex; align-items:center; gap:14px; background:rgba(255,0,127,0.07); border:1.5px solid rgba(255,0,127,0.25); border-radius:12px; padding:14px 16px; cursor:pointer; font-family:'Outfit'; font-weight:700; color:#fff; margin-bottom:10px; transition:all 0.2s;">
+                                <span style="font-size:26px; flex-shrink:0;">🤳</span>
+                                <span style="text-align:left;">
+                                    <span style="display:block; font-size:13px; font-weight:800;">SELFIE / FRONT CAMERA</span>
+                                    <span style="display:block; font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); margin-top:2px;">Take a selfie with the front camera</span>
+                                </span>
+                            </button>
+
+                            <!-- Gallery option -->
+                            <button id="photo-source-gallery" style="width:100%; display:flex; align-items:center; gap:14px; background:rgba(255,251,0,0.07); border:1.5px solid rgba(255,251,0,0.25); border-radius:12px; padding:14px 16px; cursor:pointer; font-family:'Outfit'; font-weight:700; color:#fff; margin-bottom:10px; transition:all 0.2s;">
+                                <span style="font-size:26px; flex-shrink:0;">🖼️</span>
+                                <span style="text-align:left;">
+                                    <span style="display:block; font-size:13px; font-weight:800;">GALLERY / PHOTOS</span>
+                                    <span style="display:block; font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); margin-top:2px;">Choose from your photo gallery</span>
+                                </span>
+                            </button>
+
+                            <!-- Web Browser option -->
+                            <button id="photo-source-browse" style="width:100%; display:flex; align-items:center; gap:14px; background:rgba(0,119,255,0.07); border:1.5px solid rgba(0,119,255,0.25); border-radius:12px; padding:14px 16px; cursor:pointer; font-family:'Outfit'; font-weight:700; color:#fff; margin-bottom:16px; transition:all 0.2s;">
+                                <span style="font-size:26px; flex-shrink:0;">🌐</span>
+                                <span style="text-align:left;">
+                                    <span style="display:block; font-size:13px; font-weight:800;">BROWSE WEB IMAGES</span>
+                                    <span style="display:block; font-size:10px; font-weight:400; color:rgba(255,255,255,0.45); margin-top:2px;">Search web & paste image links</span>
+                                </span>
+                            </button>
+
+                            <button id="photo-source-cancel" style="background:none; border:none; color:rgba(255,255,255,0.4); font-family:'Outfit'; font-size:12px; font-weight:600; cursor:pointer;">CANCEL</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== WEB IMAGE SEARCH POPUP (PREMIUM ONLY) ===== -->
+                    <div id="web-image-search-popup" style="display:none; position:fixed; inset:0; z-index:10100; align-items:center; justify-content:center; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px);">
+                        <div style="background:#0d0d1a; border:1.5px solid rgba(255,255,255,0.15); border-radius:18px; padding:22px 20px; width:440px; max-width:92vw; box-shadow:0 0 40px rgba(0,243,255,0.2); text-align:left;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <span style="font-size:14px; font-weight:800; color:var(--neon-blue);">🌐 BROWSE WEB IMAGES</span>
+                                <button id="btn-close-web-search" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+                            </div>
+                            <div style="font-size:11px; color:rgba(255,255,255,0.5); margin-bottom:15px;">Select your web browser to search for images. Long-press the image you want, copy its link, and paste it below!</div>
+
+                            <!-- Browser Selection Grid -->
+                            <div style="font-size:11px; font-weight:700; color:#fff; margin-bottom:8px;">1. CHOOSE YOUR WEB BROWSER</div>
+                            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:18px;">
+                                <button class="btn-browser-choice" data-url="chrome" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">🌐</span>CHROME
+                                </button>
+                                <button class="btn-browser-choice" data-url="firefox" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">🦊</span>FIREFOX
+                                </button>
+                                <button class="btn-browser-choice" data-url="opera" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">⭕</span>OPERA
+                                </button>
+                                <button class="btn-browser-choice" data-url="edge" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">🟦</span>EDGE
+                                </button>
+                                <button class="btn-browser-choice" data-url="samsung" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">🪐</span>SAMSUNG
+                                </button>
+                                <button class="btn-browser-choice" data-url="default" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:#fff; padding:10px 5px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:800; display:flex; flex-direction:column; align-items:center; gap:6px;">
+                                    <span style="font-size:20px;">📱</span>DEFAULT
+                                </button>
+                            </div>
+
+                            <!-- Paste URL Row -->
+                            <div style="margin-bottom:10px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">
+                                <div style="font-size:11px; font-weight:700; color:#fff; margin-bottom:8px;">2. IMPORT THE COPIED IMAGE LINK</div>
+                                <div style="display:flex; flex-direction:column; gap:10px;">
+                                    <button id="btn-web-image-clipboard-paste" style="background:var(--neon-blue); border:none; border-radius:10px; font-family:'Outfit'; font-size:13px; font-weight:800; color:#000; padding:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 0 10px rgba(0,243,255,0.15);">
+                                        📋 PASTE FROM CLIPBOARD
+                                    </button>
+                                    
+                                    <div style="display:flex; gap:8px; margin-top:5px;">
+                                        <input type="text" id="web-image-url-input" placeholder="Or manually type/paste image link here..." style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-family:'Outfit'; font-size:12px; padding:8px 10px; outline:none;">
+                                        <button id="btn-web-image-url-apply" style="background:var(--neon-pink); border:none; border-radius:8px; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff; padding:8px 14px; cursor:pointer;">LOAD</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compact customization chips row -->
+                    <div style="display: flex; gap: 8px; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+
+                        <!-- BG chip: shows current color preview dot + label -->
+                        <button id="btn-open-bg-picker" style="flex: 1; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.5); border: 1.5px solid var(--panel-border); border-radius: 30px; padding: 9px 12px; cursor: pointer; font-family: 'Outfit'; font-weight: 700; font-size: 11px; color: #fff; transition: border-color 0.2s;">
+                            <span id="bg-chip-dot" style="width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg,#080710,#05040a); border: 2px solid var(--neon-blue); flex-shrink:0; transition: background 0.3s;"></span>
+                            <span style="flex:1; text-align:left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                🎨 <span id="bg-chip-label">DEFAULT</span>
+                            </span>
+                            <span style="font-size:8px; opacity:0.5;">▼</span>
+                        </button>
+
+                        <!-- Ship chip: shows current ship emoji + label -->
+                        <button id="btn-open-ship-picker" style="flex: 1; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.5); border: 1.5px solid var(--panel-border); border-radius: 30px; padding: 9px 12px; cursor: pointer; font-family: 'Outfit'; font-weight: 700; font-size: 11px; color: #fff; transition: border-color 0.2s;">
+                            <span id="ship-chip-icon" style="font-size: 14px; flex-shrink:0;">🚀</span>
+                            <span style="flex:1; text-align:left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                <span id="ship-chip-label">JET</span>
+                            </span>
+                            <span style="font-size:8px; opacity:0.5;">▼</span>
+                        </button>
+
+                        <!-- Song chip: shows current song icon + name -->
+                        <button id="btn-open-song-picker" style="flex: 1; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.5); border: 1.5px solid var(--panel-border); border-radius: 30px; padding: 9px 12px; cursor: pointer; font-family: 'Outfit'; font-weight: 700; font-size: 11px; color: #fff; transition: border-color 0.2s;">
+                            <span id="song-chip-icon" style="font-size: 14px; flex-shrink:0;">🎵</span>
+                            <span style="flex:1; text-align:left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                <span id="song-chip-label">DEFAULT</span>
+                            </span>
+                            <span style="font-size:8px; opacity:0.5;">▼</span>
+                        </button>
+                    </div>
+
+                    <!-- ===== BG PICKER POPUP ===== -->
+                    <div id="bg-picker-popup" style="display:none; position: fixed; inset: 0; z-index: 9000; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);">
+                        <div style="background: #0d0d1a; border: 1.5px solid var(--panel-border); border-radius: 16px; padding: 20px; width: 320px; max-width: 92vw; box-shadow: 0 0 30px rgba(0,243,255,0.12);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                                <span style="font-size:14px; font-weight:800; color:var(--neon-blue);">🎨 BACKGROUND THEME</span>
+                                <button id="btn-close-bg-picker" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px;">
+                                <button class="bg-swatch-btn" data-theme="default" data-label="DEFAULT" data-dot="linear-gradient(135deg,#080710,#05040a)" data-dot-border="#444" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid var(--neon-blue); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#080710,#05040a);border:1px solid #444;flex-shrink:0;"></span>DEFAULT
+                                </button>
+                                <button class="bg-swatch-btn" data-theme="cosmic" data-label="COSMIC" data-dot="linear-gradient(135deg,#4a1a8a,#0c061a)" data-dot-border="#6a2aaa" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#4a1a8a,#0c061a);border:1px solid #6a2aaa;flex-shrink:0;"></span>COSMIC 🌌
+                                </button>
+                                <button class="bg-swatch-btn" data-theme="cyberpunk" data-label="CYBERPUNK" data-dot="linear-gradient(135deg,#ff6600,#240a00)" data-dot-border="#ff4400" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#ff6600,#240a00);border:1px solid #ff4400;flex-shrink:0;"></span>CYBERPUNK ⚡
+                                </button>
+                                <button class="bg-swatch-btn" data-theme="acid" data-label="ACID GREEN" data-dot="linear-gradient(135deg,#00ff44,#031a08)" data-dot-border="#00cc33" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#00ff44,#031a08);border:1px solid #00cc33;flex-shrink:0;"></span>ACID GREEN 🧪
+                                </button>
+                                <button class="bg-swatch-btn" data-theme="ocean" data-label="OCEAN BLUE" data-dot="linear-gradient(135deg,#0077ff,#001224)" data-dot-border="#0055cc" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#0077ff,#001224);border:1px solid #0055cc;flex-shrink:0;"></span>OCEAN BLUE 🌊
+                                </button>
+                                <button class="bg-swatch-btn" data-theme="midnight" data-label="MIDNIGHT" data-dot="#000" data-dot-border="#333" style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 12px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:#fff;">
+                                    <span style="width:16px;height:16px;border-radius:50%;background:#000;border:1px solid #333;flex-shrink:0;"></span>MIDNIGHT 🌑
+                                </button>
+                            </div>
+                            <!-- Premium-only custom photo row -->
+                            <button id="btn-bg-custom-photo" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(255,251,0,0.07); border:2px dashed rgba(255,251,0,0.4); border-radius:10px; padding:11px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:var(--neon-yellow);">
+                                👑 📷 CUSTOM PHOTO (GALLERY / CAMERA) — PREMIUM ONLY
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ===== SHIP PICKER POPUP ===== -->
+                    <div id="ship-picker-popup" style="display:none; position: fixed; inset: 0; z-index: 9000; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);">
+                        <div style="background: #0d0d1a; border: 1.5px solid var(--panel-border); border-radius: 16px; padding: 20px; width: 320px; max-width: 92vw; box-shadow: 0 0 30px rgba(255,0,127,0.12);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                                <span style="font-size:14px; font-weight:800; color:var(--neon-pink);">🚀 SHIP DESIGN</span>
+                                <button id="btn-close-ship-picker" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px;">
+                                <button class="ship-model-btn" data-model="arrow" data-label="JET" data-icon="🚀" style="display:flex; flex-direction:column; align-items:center; gap:6px; background:rgba(255,255,255,0.05); border:2px solid var(--neon-pink); border-radius:10px; padding:12px 8px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:700; color:#fff;">
+                                    🚀<span>JET</span>
+                                </button>
+                                <button class="ship-model-btn" data-model="classic" data-label="GLIDER" data-icon="📐" style="display:flex; flex-direction:column; align-items:center; gap:6px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:12px 8px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:700; color:#fff;">
+                                    📐<span>GLIDER</span>
+                                </button>
+                                <button class="ship-model-btn" data-model="ufo" data-label="UFO" data-icon="🛸" style="display:flex; flex-direction:column; align-items:center; gap:6px; background:rgba(255,255,255,0.05); border:2px solid rgba(255,255,255,0.15); border-radius:10px; padding:12px 8px; cursor:pointer; font-family:'Outfit'; font-size:11px; font-weight:700; color:#fff;">
+                                    🛸<span>UFO</span>
+                                </button>
+                            </div>
+                            <!-- Premium-only custom photo row -->
+                            <button id="btn-ship-custom-photo" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(255,251,0,0.07); border:2px dashed rgba(255,251,0,0.4); border-radius:10px; padding:11px; cursor:pointer; font-family:'Outfit'; font-size:12px; font-weight:700; color:var(--neon-yellow);">
+                                👑 📷 CUSTOM PHOTO (GALLERY / CAMERA) — PREMIUM ONLY
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ===== SONG PICKER POPUP ===== -->
+                    <div id="song-picker-popup" style="display:none; position: fixed; inset: 0; z-index: 9000; align-items: center; justify-content: center; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);">
+                        <div style="background: #0d0d1a; border: 1.5px solid var(--panel-border); border-radius: 16px; padding: 20px; width: 320px; max-width: 92vw; box-shadow: 0 0 30px rgba(0,243,255,0.12);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                                <span style="font-size:14px; font-weight:800; color:var(--neon-blue);">🎵 MUSIC SOUNDTRACK</span>
+                                <button id="btn-close-song-picker" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer; line-height:1;">✕</button>
+                            </div>
+                            
+                            <!-- Synth Tune list -->
+                            <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
+                                <button class="btn btn-select-tune-item" data-tune-idx="0" style="padding: 10px; background: rgba(0,0,0,0.4); border: 1px solid var(--panel-border); border-radius: 8px; color: #fff; font-family: 'Outfit'; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer;">
+                                    🎵 Neon Highway (Default)
+                                </button>
+                                <button class="btn btn-select-tune-item" data-tune-idx="1" style="padding: 10px; background: rgba(0,0,0,0.4); border: 1px solid var(--panel-border); border-radius: 8px; color: #aaa; font-family: 'Outfit'; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer;">
+                                    🎵 Space Odyssey
+                                </button>
+                                <button class="btn btn-select-tune-item" data-tune-idx="2" style="padding: 10px; background: rgba(0,0,0,0.4); border: 1px solid var(--panel-border); border-radius: 8px; color: #aaa; font-family: 'Outfit'; font-size: 13px; font-weight: 700; text-align: left; cursor: pointer;">
+                                    🎵 Cyberpunk
+                                </button>
+                            </div>
+
+                            <!-- Custom Upload -->
+                            <div style="background:rgba(0,243,255,0.04); border: 1px dashed rgba(0,243,255,0.3); border-radius:12px; padding: 12px; text-align:center;">
+                                <div style="font-size:11px; font-weight:700; color:#fff; margin-bottom:8px;">CUSTOM UPLOAD</div>
+                                <div style="display:flex; gap:8px; justify-content:center; align-items:center;">
+                                    <button class="btn" id="btn-menu-song-upload" style="padding: 6px 14px; font-size: 12px;">UPLOAD FILE</button>
+                                    <button class="btn btn-danger" id="btn-menu-song-clear" style="padding: 6px 14px; font-size: 12px; display: none;">CLEAR</button>
+                                </div>
+                                <input type="file" id="input-menu-song" accept="audio/*" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group" style="display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap;">
+                        <button class="btn" id="btn-coin-shop" style="background-image: url('shop_header.png'); background-size: cover; background-position: center; border: 1.5px solid var(--neon-pink); border-radius: 12px; color: #fff; font-weight: 800; text-shadow: 0 2px 4px #000, 0 0 10px #000; box-shadow: 0 0 10px rgba(255,0,127,0.3); flex: 1.2; font-family:'Outfit'; font-size:12px; padding: 10px 14px; min-height: 45px;">🎟️ BUY TICKETS</button>
+                        <button class="btn" id="btn-endless-mode" style="background: linear-gradient(135deg, #00f3ff 0%, #b000ff 100%); border: 1.5px solid var(--neon-blue); border-radius: 12px; color: #fff; font-weight: 900; flex: 1.2; font-family:'Outfit'; font-size:12px; padding: 10px 12px; min-height: 45px; box-shadow: 0 0 12px rgba(0,243,255,0.3);">♾️ ENDLESS</button>
+                        <button class="btn" id="btn-hall-of-legends" style="background: linear-gradient(135deg, #fffb00 0%, #ff5e00 100%); border: 1.5px solid var(--neon-yellow); border-radius: 12px; color: #000; font-weight: 900; flex: 1.2; font-family:'Outfit'; font-size:12px; padding: 10px 12px; min-height: 45px; box-shadow: 0 0 12px rgba(255,251,0,0.3);">👑 LEGENDS</button>
+                        <button class="btn" id="btn-shop" style="flex: 1;">🛒 USE TICKETS</button>
+                        <button class="btn" id="btn-settings" style="flex: 1;">SETTINGS</button>
+                        <button class="btn" id="btn-redeem-pass" style="flex: 1.5; background: linear-gradient(135deg, #00ff87 0%, #60efff 100%); border: 1.5px solid var(--neon-green); border-radius: 12px; color: #000; font-weight: 900; font-family:'Outfit'; font-size: 11px; padding: 10px 8px; min-height: 45px; cursor: pointer; box-shadow: 0 0 10px rgba(0,255,135,0.3);">🎟️ REDEEM PASS</button>
+                    </div>
+
+                    <div class="button-group" style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; width: 100%;">
+                        <button class="btn" id="btn-quests-trigger" style="background: linear-gradient(135deg, #ff0055 0%, #ff8800 100%); border: 1.5px solid var(--neon-pink); border-radius: 12px; color: #fff; font-weight: 900; flex: 1; font-family:'Outfit'; font-size:12px; padding: 10px 12px; min-height: 45px; box-shadow: 0 0 12px rgba(255,0,85,0.3);">📅 DAILY QUESTS</button>
+                        <button class="btn" id="btn-invest-trigger" style="background: linear-gradient(135deg, #00ff87 0%, #0078ff 100%); border: 1.5px solid var(--neon-green); border-radius: 12px; color: #000; font-weight: 900; flex: 1; font-family:'Outfit'; font-size:12px; padding: 10px 12px; min-height: 45px; box-shadow: 0 0 12px rgba(0,255,135,0.3);">📈 TICKET INVEST</button>
+                    </div>
+
+                    <!-- GAME HISTORY PANEL (PREMIUM ONLY) -->
+                    <div id="game-history-panel" style="width: 100%; border: 1px solid var(--panel-border); background: rgba(0,0,0,0.55); padding: 15px; border-radius: 12px; margin-top: 20px; text-align: left; font-family: 'Outfit'; box-sizing: border-box;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;">
+                            <span style="font-size: 13px; font-weight: 800; color: var(--neon-blue);">🎮 RECENT RUNS HISTORY</span>
+                            <span id="history-premium-lock" style="font-size: 11px; font-weight: 700; color: var(--neon-yellow); background: rgba(255, 251, 0, 0.1); padding: 2px 8px; border-radius: 10px; border: 1px solid var(--neon-yellow);">🔒 PREMIUM ONLY</span>
+                        </div>
+                        <div id="history-list-box" style="display: flex; flex-direction: column; gap: 8px; max-height: 120px; overflow-y: auto; font-size: 12px; color: #fff;">
+                            <p style="color: var(--text-muted); text-align: center; margin: 10px 0;">No runs recorded yet. Start playing!</p>
+                        </div>
+                    </div>
+
+                    <!-- Banner Ad Slot -->
+                    <div class="ad-banner-container" style="margin: 15px auto 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60px; background: rgba(0,0,0,0.4); border: 1.5px dashed rgba(0,243,255,0.2); border-radius: 12px; width: 100%; max-width: 468px; box-sizing: border-box; padding: 5px;">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:320px;height:50px"
+                             data-ad-client="ca-pub-3291775967524458"
+                             data-ad-slot="1234567890"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <div class="ad-label" style="font-size: 8px; font-family: 'Outfit'; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-top: 2px; letter-spacing: 1px;">Sponsored Link</div>
+                    </div>
+
+                    <!-- Legal compliance links for Razorpay verification -->
+                    <div class="footer-links" style="margin-top: 15px; display: flex; gap: 12px; justify-content: center; font-size: 10px; font-family: 'Outfit'; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px;">
+                        <a href="privacy.html" id="link-privacy" style="color: inherit; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-yellow)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="terms.html" id="link-terms" style="color: inherit; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-yellow)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Terms</a>
+                        <span>|</span>
+                        <a href="refund.html" id="link-refund" style="color: inherit; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-yellow)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Refund Policy</a>
+                        <span>|</span>
+                        <a href="contact.html" id="link-contact" style="color: inherit; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--neon-yellow)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Contact Us</a>
+                    </div>
+                </div>
+
+                <!-- SEO Content Panel (Addresses Google AdSense 'Low Value Content' Rejection) -->
+                <div class="glass-panel" style="margin-top: 30px; margin-bottom: 30px; max-width: 800px; text-align: left; align-items: flex-start; padding: 30px 40px; background: rgba(10, 8, 20, 0.85); border-color: rgba(0, 243, 255, 0.15);">
+                    <h2 style="font-size: 24px; color: var(--neon-blue); text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); margin-bottom: 15px;">WAVE DASH - PLAY FREE NEON RHYTHM PLATFORMER</h2>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--text-muted); margin-bottom: 20px;">
+                        Welcome to <strong>Wave Dash</strong>, a free browser-based arcade rhythm platformer. Fly your glowing neon spaceship through challenging geometry-themed tunnels, dodge moving sawblades, avoid electric spikes, and glide to the beat of the high-energy soundtrack. Master your reflex timing, unlock stunning shop rewards, and test your skills across multiple levels. No download is needed—start playing in your browser right now!
+                    </p>
+                    
+                    <h3 style="font-size: 18px; color: var(--neon-pink); text-shadow: 0 0 10px rgba(255, 0, 127, 0.3); margin-top: 10px; margin-bottom: 10px;">HOW TO PLAY</h3>
+                    <ul style="padding-left: 20px; margin-bottom: 20px; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;"><strong>Jump/Fly Upwards:</strong> Press <strong>Spacebar</strong>, click your <strong>Left Mouse Button</strong>, or tap the screen.</li>
+                        <li style="margin-bottom: 8px;"><strong>Descend:</strong> Release the key/tap to let gravity guide your ship down.</li>
+                        <li style="margin-bottom: 8px;"><strong>Dodge Obstacles:</strong> Avoid all red neon spikes, sawblades, and electric barriers. One crash will reset your attempt!</li>
+                        <li style="margin-bottom: 8px;"><strong>Collect Coins:</strong> Grab golden coins scattered along the path to spend on legendary skins in the Shop.</li>
+                    </ul>
+
+                    <h3 style="font-size: 18px; color: var(--neon-green); text-shadow: 0 0 10px rgba(57, 255, 20, 0.3); margin-top: 10px; margin-bottom: 10px;">GAME FEATURES</h3>
+                    <ul style="padding-left: 20px; margin-bottom: 15px; color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;"><strong>Rhythm-Based Action:</strong> Obstacles and patterns synchronized beautifully with neon rhythm tracks.</li>
+                        <li style="margin-bottom: 8px;"><strong>Practice Mode:</strong> Place checkpoints using <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 11px;">Z</kbd> and remove them with <kbd style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; font-size: 11px;">X</kbd> to master hard sections.</li>
+                        <li style="margin-bottom: 8px;"><strong>Custom Level Editor:</strong> Build your own levels from scratch, customize obstacle patterns, and test them instantly!</li>
+                        <li style="margin-bottom: 8px;"><strong>Coin Investment System:</strong> Put your hard-earned coins to work! Invest them in the menu to earn passive interest hourly.</li>
+                        <li style="margin-bottom: 8px;"><strong>Premium Upgrades:</strong> Unlock golden skins, ad-free passes, and custom profile icons.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SCREEN 2: Level Select -->
+            <div class="screen" id="level-select-screen">
+                <div class="glass-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                        <h2 style="margin: 0;">SELECT LEVEL</h2>
+                        <button class="btn" id="btn-open-unlock-level-modal" style="background: linear-gradient(135deg, var(--neon-pink) 0%, #ff0055 100%); border: none; color: #fff; font-weight: 800; font-size: 11px; padding: 8px 14px; border-radius: 8px; box-shadow: 0 0 10px rgba(255,0,127,0.3); cursor: pointer; display: flex; align-items: center; gap: 5px;">🔓 UNLOCK ANY LEVEL</button>
+                    </div>
+                    
+                    <div class="level-list" id="level-list-container">
+                        <!-- Dynamically generated list of 500 levels -->
+                    </div>
+
+                    <button class="btn" id="level-select-back">BACK</button>
+
+                    <!-- Banner Ad Slot -->
+                    <div class="ad-banner-container" style="margin: 15px auto 0 auto; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60px; background: rgba(0,0,0,0.4); border: 1.5px dashed rgba(0,243,255,0.2); border-radius: 12px; width: 100%; max-width: 468px; box-sizing: border-box; padding: 5px;">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:320px;height:50px"
+                             data-ad-client="ca-pub-3291775967524458"
+                             data-ad-slot="1234567890"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <div class="ad-label" style="font-size: 8px; font-family: 'Outfit'; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-top: 2px; letter-spacing: 1px;">Sponsored Link</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREEN 3: Settings -->
+            <div class="screen" id="settings-screen">
+                <div class="glass-panel">
+                    <h2>SETTINGS</h2>
+                    
+                    <div class="settings-list">
+                        <!-- Music volume slider -->
+                        <div class="setting-item">
+                            <span class="setting-label">MUSIC VOLUME</span>
+                            <div class="setting-control">
+                                <input type="range" id="music-volume" min="0" max="100" value="60">
+                            </div>
+                        </div>
+                        
+                        <!-- SFX volume slider -->
+                        <div class="setting-item">
+                            <span class="setting-label">SOUND VOLUME</span>
+                            <div class="setting-control">
+                                <input type="range" id="sfx-volume" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        
+                        <!-- Mute switch -->
+                        <div class="setting-item">
+                            <span class="setting-label">MUTE AUDIO</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="mute-toggle">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- Show FPS switch -->
+                        <div class="setting-item">
+                            <span class="setting-label">SHOW FPS</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="fps-toggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <!-- Graphics quality dropdown -->
+                        <div class="setting-item">
+                            <span class="setting-label">GRAPHICS QUALITY</span>
+                            <select id="graphics-quality">
+                                <option value="high">HIGH (GLOW)</option>
+                                <option value="low">LOW (FAST)</option>
+                            </select>
+                        </div>
+
+                        <!-- Background Theme dropdown -->
+                        <div class="setting-item">
+                            <span class="setting-label">BACKGROUND THEME</span>
+                            <select id="setting-bg-theme" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 5px 10px; border-radius: 6px; font-family: 'Outfit'; font-size: 13px; outline: none; box-sizing: border-box;">
+                                <option value="default">DEFAULT LEVEL COLOR</option>
+                                <option value="cosmic">COSMIC PURPLE 🌌</option>
+                                <option value="cyberpunk">CYBERPUNK ORANGE ⚡</option>
+                                <option value="acid">ACID GREEN 🧪</option>
+                                <option value="ocean">OCEAN BLUE 🌊</option>
+                                <option value="midnight">MIDNIGHT BLACK 🌑</option>
+                            </select>
+                        </div>
+
+                        <!-- Arrow/Spaceship Model dropdown -->
+                        <div class="setting-item">
+                            <span class="setting-label">SHIP DESIGN</span>
+                            <select id="setting-ship-model" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 5px 10px; border-radius: 6px; font-family: 'Outfit'; font-size: 13px; outline: none; box-sizing: border-box;">
+                                <option value="arrow">AERODYNAMIC JET 🚀</option>
+                                <option value="classic">RETRO GLIDER 📐</option>
+                                <option value="ufo">CYBERPUNK UFO 🛸</option>
+                            </select>
+                        </div>
+
+                        <!-- Fullscreen button -->
+                        <div class="setting-item">
+                            <span class="setting-label">FULLSCREEN</span>
+                            <button class="btn" id="fullscreen-btn" style="padding: 6px 16px; font-size: 13px;">ENTER</button>
+                        </div>
+
+                        <!-- Custom Song option -->
+                        <div class="setting-item">
+                            <span class="setting-label">CUSTOM SONG</span>
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <button class="btn" id="btn-custom-song-upload" style="padding: 6px 16px; font-size: 13px;">UPLOAD</button>
+                                <button class="btn btn-danger" id="btn-custom-song-clear" style="padding: 6px 16px; font-size: 13px; display: none;">CLEAR</button>
+                            </div>
+                            <input type="file" id="input-custom-song" accept="audio/*" style="display: none;">
+                        </div>
+
+                        <!-- Select default built-in tunes -->
+                        <div class="setting-item">
+                            <span class="setting-label">SELECT TUNE</span>
+                            <select id="select-built-in-tune" style="background: rgba(0,0,0,0.8); border: 1.5px solid rgba(255,255,255,0.15); color: #fff; padding: 6px 10px; border-radius: 8px; font-family: 'Outfit'; font-size: 13px; outline: none; box-sizing: border-box; text-align-last: right;">
+                                <option value="0">Neon Highway (Default)</option>
+                                <option value="1">Space Odyssey</option>
+                                <option value="2">Cyberpunk</option>
+                            </select>
+                        </div>
+
+                        <!-- Check for Updates button (Only for mobile/Capacitor version) -->
+                        <div class="setting-item" id="setting-item-update" style="display: none;">
+                            <span class="setting-label">APP UPDATE</span>
+                            <button class="btn" id="btn-check-updates" style="padding: 6px 16px; font-size: 13px;">CHECK FOR UPDATES</button>
+                        </div>
+                    </div>
+
+
+
+                    <div style="display: flex; gap: 15px; margin-top: 20px; width: 100%;">
+                        <button class="btn btn-primary" id="btn-settings-profile" style="flex: 1; background: linear-gradient(135deg, var(--neon-blue) 0%, rgba(0, 243, 255, 0.1) 100%); border-color: var(--neon-blue); color: var(--neon-blue); font-weight: 700;">👤 MY PROFILE</button>
+                        <button class="btn" id="btn-credits" style="flex: 1;">CREDITS</button>
+                        <button class="btn" id="settings-back" style="flex: 1;">BACK</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREEN 4: Shop Customization -->
+            <!-- SCREEN 4: Shop Customization -->
+            <div class="screen" id="shop-screen" style="overflow-y: auto; padding: 20px 0;">
+                <div class="glass-panel" style="position: relative; width: 440px; max-width: 95vw; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+                    <!-- Top-right Exit/Close Button -->
+                    <button id="btn-close-shop" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10;" onmouseover="this.style.color='#ff007f'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">✕</button>
+                    
+                    <h2>SKIN SHOP</h2>
+                    <p style="margin-bottom: 15px;">Customize your ship with vibrant neon skins</p>
+
+                    <!-- Unlock Any Level Quick Option in Skin Shop -->
+                    <div style="background: rgba(255,0,127,0.06); border: 1.5px solid rgba(255,0,127,0.25); border-radius: 12px; padding: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; box-sizing: border-box; width: 100%;">
+                        <div style="pointer-events: none;">
+                            <span style="font-weight: 800; font-size: 13px; color: var(--neon-pink); display: block;">🔓 UNLOCK ANY LEVEL</span>
+                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Bypass levels & unlock any index instantly</span>
+                        </div>
+                        <button class="btn btn-buy-shop-item" data-item-type="unlock-any" data-item-price="3" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-pink); color: #fff; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">3 🎟️</button>
+                    </div>
+
+                    <!-- ===== SHOP SECTOR: Preset Color Skins ===== -->
+                    <div style="width: 100%; text-align: left; box-sizing: border-box;">
+                        <h3 style="font-size: 13px; font-weight: 800; color: var(--neon-blue); border-bottom: 1.5px solid rgba(0,243,255,0.25); padding-bottom: 4px; margin: 0 0 10px 0;">🎨 CHOOSE SHIP SKIN</h3>
+                        <div class="color-selector-grid" id="shop-color-grid" style="margin-bottom: 10px;">
+                            <!-- Dynamic contents built in ui.js -->
+                        </div>
+                    </div>
+
+                    <!-- ===== SHOP SECTOR: Custom Particle Trails ===== -->
+                    <div style="width: 100%; text-align: left; box-sizing: border-box; margin-top: 15px;">
+                        <h3 style="font-size: 13px; font-weight: 800; color: var(--neon-pink); border-bottom: 1.5px solid rgba(255,0,85,0.25); padding-bottom: 4px; margin: 0 0 10px 0;">✨ EXHAUST TRAILS</h3>
+                        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;" id="trail-shop-list">
+                            <!-- Populated in updateTrailShopUI -->
+                        </div>
+                    </div>
+
+                    <!-- PREMIUM: Custom Colour Skin Picker -->
+                    <div id="custom-colour-section" style="width:100%; margin-top:18px; background:rgba(255,251,0,0.05); border:1.5px solid rgba(255,251,0,0.25); border-radius:14px; padding:16px; box-sizing:border-box;">
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                            <span style="font-size:13px; font-weight:800; color:var(--neon-yellow);">👑 CUSTOM COLOUR SKIN</span>
+                            <span style="font-size:10px; font-weight:700; background:rgba(255,251,0,0.15); color:var(--neon-yellow); border:1px solid var(--neon-yellow); border-radius:20px; padding:2px 8px;">PREMIUM ONLY</span>
+                        </div>
+                        <p style="font-size:11px; color:rgba(255,255,255,0.4); margin:0 0 12px 0;">Pick any colour to use as your ship's primary and secondary skin colours</p>
+
+                        <!-- Primary colour -->
+                        <div style="margin-bottom:12px;">
+                            <div style="font-size:11px; font-weight:700; color:#fff; margin-bottom:6px;">PRIMARY COLOUR</div>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <canvas id="colour-picker-primary" width="220" height="140" style="border-radius:10px; cursor:crosshair; border:1.5px solid rgba(255,255,255,0.15); flex-shrink:0;"></canvas>
+                                <div style="display:flex; flex-direction:column; gap:8px; flex:1; min-width:0;">
+                                    <input id="hue-slider-primary" type="range" min="0" max="360" value="180" style="width:100%; accent-color:var(--neon-blue);">
+                                    <div style="display:flex; align-items:center; gap:6px;">
+                                        <span id="primary-colour-swatch" style="width:32px; height:32px; border-radius:8px; background:#00ffff; border:2px solid rgba(255,255,255,0.3); flex-shrink:0;"></span>
+                                        <input id="primary-colour-hex" type="text" value="#00ffff" maxlength="7" style="background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.2); border-radius:8px; color:#fff; font-family:'Outfit'; font-size:13px; font-weight:700; padding:6px 10px; width:100%; box-sizing:border-box;" placeholder="#rrggbb">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary colour -->
+                        <div style="margin-bottom:14px;">
+                            <div style="font-size:11px; font-weight:700; color:#fff; margin-bottom:6px;">SECONDARY COLOUR</div>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <canvas id="colour-picker-secondary" width="220" height="140" style="border-radius:10px; cursor:crosshair; border:1.5px solid rgba(255,255,255,0.15); flex-shrink:0;"></canvas>
+                                <div style="display:flex; flex-direction:column; gap:8px; flex:1; min-width:0;">
+                                    <input id="hue-slider-secondary" type="range" min="0" max="360" value="300" style="width:100%; accent-color:var(--neon-pink);">
+                                    <div style="display:flex; align-items:center; gap:6px;">
+                                        <span id="secondary-colour-swatch" style="width:32px; height:32px; border-radius:8px; background:#ff00ff; border:2px solid rgba(255,255,255,0.3); flex-shrink:0;"></span>
+                                        <input id="secondary-colour-hex" type="text" value="#ff00ff" maxlength="7" style="background:rgba(255,255,255,0.07); border:1.5px solid rgba(255,255,255,0.2); border-radius:8px; color:#fff; font-family:'Outfit'; font-size:13px; font-weight:700; padding:6px 10px; width:100%; box-sizing:border-box;" placeholder="#rrggbb">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="btn-apply-custom-colour" style="width:100%; background:linear-gradient(135deg,var(--neon-yellow),rgba(255,251,0,0.3)); border:none; border-radius:10px; padding:11px; font-family:'Outfit'; font-size:13px; font-weight:800; color:#000; cursor:pointer;">✅ APPLY CUSTOM COLOURS TO SHIP</button>
+                    </div>
+
+                    <button class="btn" id="shop-back" style="margin-top:18px; width:100%;">BACK</button>
+                </div>
+            </div>
+
+            <!-- SCREEN 4.5: Ticket Store (Real Money Purchases) -->
+            <div class="screen" id="coin-shop-screen" style="overflow-y: auto; padding: 20px 0;">
+                <div class="glass-panel" style="position: relative; width: 440px; max-width: 95vw; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+                    <!-- Top-right Exit/Close Button -->
+                    <button id="btn-close-coin-shop" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10;" onmouseover="this.style.color='#ff007f'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">✕</button>
+                    
+                    <!-- Shop Banner Image -->
+                    <img src="shop_header.png" alt="Shop Banner" style="width: 100%; height: 110px; object-fit: cover; border-radius: 12px; border: 1.5px solid rgba(0, 243, 255, 0.3); box-shadow: 0 0 12px rgba(0, 243, 255, 0.15); margin-bottom: 12px; display: block;">
+                    
+                    <h2 style="margin: 0 0 4px 0;">TICKET STORE</h2>
+                    <p style="margin: 0 0 12px 0; font-size: 13px;">Buy tickets to unlock skins and features</p>
+
+                    <!-- Ticket Balance & Shop Navigation Row -->
+                    <div style="display: flex; gap: 8px; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 16px;">
+                        <div style="background: rgba(0,243,255,0.08); border: 1.5px solid var(--neon-blue); border-radius: 20px; padding: 6px 14px; font-weight: 800; color: #fff; font-size: 11px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 10px rgba(0, 243, 255, 0.15);">
+                            🎟️ BALANCE: <span id="shop-coin-balance" style="color: var(--neon-yellow);">0</span>
+                        </div>
+                        <button class="btn" id="btn-go-to-spend-tickets" style="background: linear-gradient(135deg, #ff007f 0%, #7b00ff 100%); border: 1px solid var(--neon-pink); border-radius: 12px; color: #fff; font-weight: 800; font-size: 11px; padding: 6px 12px; cursor: pointer; transition: all 0.2s;">🛒 SPEND SHOP</button>
+                    </div>
+
+                    <!-- Ticket Packs List -->
+                    <div style="width: 100%; text-align: left; margin-bottom: 20px; box-sizing: border-box;">
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            
+                            <!-- UPI Only Packs -->
+                            <div>
+                                <div style="font-size: 10px; font-weight: 800; color: var(--neon-green); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">⚡ DIRECT UPI PACKS (UNDER ₹100 - NO FEES!)</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <!-- 10 Tickets Pack -->
+                                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <div style="pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎟️ 10 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Get 10 tickets instantly via UPI</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-10" data-item-price="0.25" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">₹20</button>
+                                    </div>
+                                    
+                                    <!-- 30 Tickets Pack -->
+                                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <div style="pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎟️ 30 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Get 30 tickets instantly via UPI</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-30" data-item-price="0.625" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">₹50</button>
+                                    </div>
+
+                                    <!-- 50 Tickets Pack -->
+                                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <div style="pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎟️ 50 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Get 50 tickets instantly via UPI</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-50" data-item-price="1.00" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">₹80</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tebex Packs -->
+                            <div>
+                                <div style="font-size: 10px; font-weight: 800; color: var(--neon-yellow); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">💳 TEBEX SECURE GATEWAY (CARDS, PAYPAL, INTERNATIONAL)</div>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <!-- 100 Tickets Pack -->
+                                    <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                        <div style="pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎟️ 100 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Instant global checkout delivery</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-100" data-item-price="2.00" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">$2.00</button>
+                                    </div>
+
+                                    <!-- 500 Tickets Pack -->
+                                    <div style="background: rgba(255,251,0,0.03); border: 1.5px solid rgba(255,251,0,0.3); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden;">
+                                        <div style="position: absolute; top: 0; left: 0; background: var(--neon-yellow); color: #000; font-size: 8px; font-weight: 900; padding: 1px 6px; border-radius: 0 0 6px 0; text-transform: uppercase; pointer-events: none;">🔥 10% SAVINGS DEAL!</div>
+                                        <div style="margin-top: 5px; pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: var(--neon-yellow); display: block;">🎟️ 500 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Get 500 tickets with bulk savings!</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-500" data-item-price="9.00" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">$9.00</button>
+                                    </div>
+
+                                    <!-- 1000 Tickets Pack -->
+                                    <div style="background: rgba(0,243,255,0.03); border: 1.5px solid rgba(0,243,255,0.3); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden;">
+                                        <div style="position: absolute; top: 0; left: 0; background: var(--neon-blue); color: #000; font-size: 8px; font-weight: 900; padding: 1px 6px; border-radius: 0 0 6px 0; text-transform: uppercase; pointer-events: none;">👑 20% MEGA DISCOUNT!</div>
+                                        <div style="margin-top: 5px; pointer-events: none;">
+                                            <span style="font-weight: 800; font-size: 13px; color: var(--neon-blue); display: block;">🎟️ 1000 TICKETS PACK</span>
+                                            <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Get 1000 tickets to unlock everything!</span>
+                                        </div>
+                                        <button class="btn btn-buy-shop-item" data-item-type="tickets-1000" data-item-price="16.00" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">$16.00</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Coin Exchange Options -->
+                    <div style="border-top: 1.5px dashed rgba(255,255,255,0.15); padding-top: 12px; margin-top: 12px; margin-bottom: 12px; text-align: left;">
+                        <div style="font-size: 10px; font-weight: 800; color: var(--neon-green); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;">🪙 EXCHANGE PLAY COINS FOR PREMIUM TICKETS</div>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <div style="background: rgba(0,255,135,0.04); border: 1px solid rgba(0,255,135,0.3); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div>
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🪙 EXCHANGE 100 COINS</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Convert 100 game coins to 1 ticket (🎟️)</span>
+                                </div>
+                                <button class="btn" id="btn-exchange-coins-100" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: #00ff87; color: #000; font-weight: 900; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">EXCHANGE</button>
+                            </div>
+                            <div style="background: rgba(0,255,135,0.06); border: 1.5px solid rgba(0,255,135,0.4); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: 0; left: 0; background: #00ff87; color: #000; font-size: 8px; font-weight: 900; padding: 1px 6px; border-radius: 0 0 6px 0; text-transform: uppercase; pointer-events: none;">👑 BULK TRADE!</div>
+                                <div style="margin-top: 5px;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #00ff87; display: block;">🪙 EXCHANGE 1000 COINS</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Convert 1000 game coins to 10 tickets (🎟️)</span>
+                                </div>
+                                <button class="btn" id="btn-exchange-coins-1000" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: #00ff87; color: #000; font-weight: 900; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">EXCHANGE</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" id="coin-shop-back" style="margin-top:10px; width:100%;">BACK</button>
+                </div>
+            </div>
+
+            <!-- SCREEN 4.6: Feature Spend Shop (Spend Tickets Menu) -->
+            <div class="screen" id="spend-tickets-screen" style="overflow-y: auto; padding: 20px 0;">
+                <div class="glass-panel" style="position: relative; width: 440px; max-width: 95vw; box-sizing: border-box; max-height: 90vh; overflow-y: auto;">
+                    <!-- Top-right Exit/Close Button -->
+                    <button id="btn-close-spend-tickets" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10;" onmouseover="this.style.color='#ff007f'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">✕</button>
+                    
+                    <!-- Shop Banner Image -->
+                    <img src="shop_header.png" alt="Shop Banner" style="width: 100%; height: 110px; object-fit: cover; border-radius: 12px; border: 1.5px solid rgba(255, 0, 127, 0.3); box-shadow: 0 0 12px rgba(255, 0, 127, 0.15); margin-bottom: 12px; display: block;">
+                    
+                    <h2 style="margin: 0 0 4px 0;">FEATURE SHOP</h2>
+                    <p style="margin: 0 0 12px 0; font-size: 13px;">Spend your tickets to unlock special features</p>
+
+                    <!-- Ticket Balance & Buy Tickets Navigation Row -->
+                    <div style="display: flex; gap: 8px; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 16px;">
+                        <div style="background: rgba(255,0,127,0.08); border: 1.5px solid var(--neon-pink); border-radius: 20px; padding: 6px 14px; font-weight: 800; color: #fff; font-size: 11px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 10px rgba(255, 0, 127, 0.15);">
+                            🎟️ BALANCE: <span id="spend-ticket-balance" style="color: var(--neon-yellow);">0</span>
+                        </div>
+                        <button class="btn" id="btn-go-to-buy-tickets" style="background: linear-gradient(135deg, #00f3ff 0%, #0078ff 100%); border: 1px solid var(--neon-blue); border-radius: 12px; color: #000; font-weight: 800; font-size: 11px; padding: 6px 12px; cursor: pointer; transition: all 0.2s;">🎟️ BUY TICKETS</button>
+                    </div>
+
+                    <!-- List of Spendable Features -->
+                    <div style="width: 100%; text-align: left; margin-bottom: 20px; box-sizing: border-box;">
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+
+                            <!-- Customize Skins Quick Option -->
+                            <div style="background: rgba(255,251,0,0.06); border: 1.5px solid var(--neon-yellow); border-radius: 10px; padding: 10px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 0 10px rgba(255,251,0,0.15); margin-bottom: 6px;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 900; font-size: 13px; color: var(--neon-yellow); display: block;">🎨 SKINS & TRAILS CUSTOMIZER</span>
+                                    <span style="font-size: 10px; color: #fff; display: block; margin-top: 2px;">Equip unlocked glider colors, custom styles, & trails!</span>
+                                </div>
+                                <button class="btn" id="btn-spend-to-skins" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 900; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">🎨 OPEN</button>
+                            </div>
+
+                            <!-- Single Level Unlock -->
+                            <div style="background: rgba(255,0,127,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🔓 UNLOCK 1 LEVEL</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Force unlock any 1 locked level index of your choice</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="unlock-any" data-item-price="4" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-pink); color: #fff; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">4 🎟️</button>
+                            </div>
+
+                            <!-- Unlock 10 Levels Pack -->
+                            <div style="background: rgba(0,243,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🔓 UNLOCK 10 LEVELS PACK</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">vs 40 separately • Save 37.5%!</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="unlock-10" data-item-price="25" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">25 🎟️</button>
+                            </div>
+
+                            <!-- Single Level Skip -->
+                            <div style="background: rgba(255,251,0,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">⏭️ SKIP 1 LEVEL</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Skip any active level instantly during gameplay</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="skip-1" data-item-price="3" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">3 🎟️</button>
+                            </div>
+
+                            <!-- 10 Level Skips Pack -->
+                            <div style="background: rgba(255,251,0,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">⏭️ 10 LEVEL SKIPS PACK</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">vs 30 separately • Save 50%!</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="skip-10" data-item-price="15" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">15 🎟️</button>
+                            </div>
+
+                            <!-- 5 Revives Pack -->
+                            <div style="background: rgba(0,255,135,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #00ff87; display: block;">💚 5 REVIVES PACK</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Continue from 5 sec before crash</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="revives-5" data-item-price="5" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: #00ff87; color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">5 🎟️</button>
+                            </div>
+
+                            <!-- 10 Revives Pack -->
+                            <div style="background: rgba(0,255,135,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #00ff87; display: block;">💚 10 REVIVES PACK</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Best value • Save 20%!</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="revives-10" data-item-price="8" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: #00ff87; color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">8 🎟️</button>
+                            </div>
+
+                            <!-- Custom Song Upload -->
+                            <div style="background: rgba(0,243,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎵 CUSTOM SONG UPLOAD</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Upload custom soundtrack files in Settings</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="custom-song" data-item-price="3" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">3 🎟️</button>
+                            </div>
+
+                            <!-- Custom Background Photo -->
+                            <div style="background: rgba(255,251,0,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🖼️ CUSTOM BACKGROUND PHOTO</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Use your own custom wallpaper background</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="custom-bg" data-item-price="3" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-yellow); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">3 🎟️</button>
+                            </div>
+
+                            <!-- Custom Glider Ship Skin -->
+                            <div style="background: rgba(255,0,127,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🚀 CUSTOM GLIDER SHIP SKIN</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Unlock custom photos to design ship skins</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="custom-glider" data-item-price="1" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-pink); color: #fff; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">1 🎟️</button>
+                            </div>
+
+                            <!-- Custom Skin Colour -->
+                            <div style="background: rgba(255,165,0,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: #fff; display: block;">🎨 CUSTOM SKIN COLOUR</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.5);">Unlock hex code color picker for ship</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" data-item-type="custom-skin-color" data-item-price="5" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: #ffa500; color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">5 🎟️</button>
+                            </div>
+
+                            <!-- Endless Practice Mode -->
+                            <div style="background: rgba(0,243,255,0.06); border: 1.5px solid var(--neon-blue); border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+                                <div style="pointer-events: none;">
+                                    <span style="font-weight: 800; font-size: 13px; color: var(--neon-blue); display: block;">♾️ ENDLESS PRACTICE MODE</span>
+                                    <span style="font-size: 10px; color: rgba(255,255,255,0.6);" id="endless-shop-desc">50 Tickets • FREE for Level 500+ Master players!</span>
+                                </div>
+                                <button class="btn btn-buy-shop-item" id="btn-buy-endless-mode" data-item-type="endless-mode" data-item-price="50" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">50 🎟️</button>
+                            </div>
+
+                            <!-- Endless Maps Purchase Section (Hidden until Endless Practice Mode is unlocked) -->
+                            <div id="endless-maps-shop-section" style="display: none; flex-direction: column; gap: 8px; border-top: 1.5px dashed rgba(255,255,255,0.15); padding-top: 10px; margin-top: 5px;">
+                                <div style="font-size: 11px; font-weight: 800; color: var(--neon-blue); text-transform: uppercase; margin-bottom: 2px;">🔓 Unlock Endless Maps (6-10)</div>
+                                
+                                <!-- Map 6 -->
+                                <div id="shop-map-6-container" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 800; font-size: 12px; color: #fff; display: block;">🗺️ MAP 6: RADIOACTIVE PURPLE</span>
+                                        <span style="font-size: 9px; color: rgba(255,255,255,0.5);">Unlock Map 6 for Endless runs</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-map-6" data-item-price="5" style="padding: 5px 10px; font-size: 10px; border-radius: 4px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">5 🎟️</button>
+                                </div>
+
+                                <!-- Map 7 -->
+                                <div id="shop-map-7-container" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 800; font-size: 12px; color: #fff; display: block;">🗺️ MAP 7: DEEP CYBER BLUE</span>
+                                        <span style="font-size: 9px; color: rgba(255,255,255,0.5);">Unlock Map 7 for Endless runs</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-map-7" data-item-price="5" style="padding: 5px 10px; font-size: 10px; border-radius: 4px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">5 🎟️</button>
+                                </div>
+
+                                <!-- Map 8 -->
+                                <div id="shop-map-8-container" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 800; font-size: 12px; color: #fff; display: block;">🗺️ MAP 8: TOXIC GREEN & ORANGE</span>
+                                        <span style="font-size: 9px; color: rgba(255,255,255,0.5);">Unlock Map 8 for Endless runs</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-map-8" data-item-price="5" style="padding: 5px 10px; font-size: 10px; border-radius: 4px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">5 🎟️</button>
+                                </div>
+
+                                <!-- Map 9 -->
+                                <div id="shop-map-9-container" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 800; font-size: 12px; color: #fff; display: block;">🗺️ MAP 9: SHADOW INDIGO</span>
+                                        <span style="font-size: 9px; color: rgba(255,255,255,0.5);">Unlock Map 9 for Endless runs</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-map-9" data-item-price="5" style="padding: 5px 10px; font-size: 10px; border-radius: 4px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">5 🎟️</button>
+                                </div>
+
+                                <!-- Map 10 -->
+                                <div id="shop-map-10-container" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 800; font-size: 12px; color: #fff; display: block;">🗺️ MAP 10: ULTIMATE GOLD & EMERALD</span>
+                                        <span style="font-size: 9px; color: rgba(255,255,255,0.5);">Unlock Map 10 for Endless runs</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-map-10" data-item-price="5" style="padding: 5px 10px; font-size: 10px; border-radius: 4px; background: var(--neon-blue); color: #000; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s;">5 🎟️</button>
+                                </div>
+
+                                <!-- All 5 Bundle -->
+                                <div id="shop-maps-bundle-container" style="background: linear-gradient(135deg, rgba(0,243,255,0.1) 0%, rgba(176,0,255,0.1) 100%); border: 1.5px solid var(--neon-blue); border-radius: 10px; padding: 10px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 0 10px rgba(0,243,255,0.15);">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 900; font-size: 13px; color: var(--neon-blue); display: block;">🔥 ALL 5 MAPS BUNDLE</span>
+                                        <span style="font-size: 10px; color: #fff; display: block; margin-top: 2px;">Unlock Maps 6, 7, 8, 9, and 10 instantly!</span>
+                                        <span style="font-size: 9px; color: var(--neon-green); font-weight: 800; display: block; margin-top: 1px;">SAVE 40% (10 Ticket Savings!) vs buying individually</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="endless-maps-bundle" data-item-price="15" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: linear-gradient(135deg, var(--neon-blue) 0%, #b000ff 100%); color: #fff; font-weight: 900; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">15 🎟️</button>
+                                </div>
+
+                                <!-- Game History Activation -->
+                                <div style="background: rgba(255, 251, 0, 0.05); border: 1.5px solid var(--neon-yellow); border-radius: 10px; padding: 10px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 0 10px rgba(255, 251, 0, 0.15); margin-top: 10px;">
+                                    <div style="pointer-events: none;">
+                                        <span style="font-weight: 900; font-size: 13px; color: var(--neon-yellow); display: block;">📊 GAME RUNS HISTORY KEY</span>
+                                        <span style="font-size: 10px; color: #fff; display: block; margin-top: 2px;">Record your matches, track scores, and watch flight replays!</span>
+                                    </div>
+                                    <button class="btn btn-buy-shop-item" data-item-type="game-history" data-item-price="50" style="padding: 6px 12px; font-size: 11px; border-radius: 6px; background: linear-gradient(135deg, var(--neon-yellow) 0%, #ff5e00 100%); color: #000; font-weight: 900; border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;">50 🎟️</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="btn" id="spend-tickets-back" style="margin-top:10px; width:100%;">BACK</button>
+                </div>
+            </div>
+                </div>
+            </div>
+
+            <!-- SCREEN 5: Credits -->
+            <div class="screen" id="credits-screen">
+                <div class="glass-panel" style="width: 500px;">
+                    <h2>CREDITS</h2>
+                    
+                    <div class="credits-list">
+                        <div class="credit-row">
+                            <span class="credit-role">Developer &amp; Designer: </span>
+                            <span class="credit-name" style="color: var(--neon-yellow); font-weight: 800;">Sian Goyal</span>
+                        </div>
+                        <div class="credit-row">
+                            <span class="credit-role">Sound Engine: </span>
+                            <span class="credit-name">Web Audio API Synthesis</span>
+                        </div>
+                        <div class="credit-row">
+                            <span class="credit-role">Aesthetic Theme: </span>
+                            <span class="credit-name">Futuristic Cyberpunk Neon</span>
+                        </div>
+                        <div class="credit-row" style="margin-top: 15px; font-size: 13px; color: var(--text-muted); text-align: center;">
+                            Built using pure JavaScript, Canvas, and HTML5.<br><br>
+                            <span style="color: var(--neon-blue); font-weight: 700;">Made with ❤️ by Sian Goyal</span>
+                        </div>
+                    </div>
+
+                    <button class="btn" id="credits-back">BACK</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 6: Pause Overlay -->
+            <div class="screen" id="pause-screen">
+                <div class="glass-panel hud-overlay-card" style="border-color: var(--neon-blue); box-shadow: var(--shadow-glow-blue);">
+                    <h2>PAUSED</h2>
+                    <p>Rhythm sequence suspended</p>
+
+                    <!-- Practice toggle inside pause -->
+                    <div class="setting-item" style="margin-bottom: 25px; width: 220px;">
+                        <span class="setting-label">PRACTICE MODE</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="practice-toggle-pause">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                     <div class="button-group">
+                         <button class="btn btn-success" id="btn-resume">RESUME</button>
+                         <button class="btn btn-warning" id="btn-skip-pause">SKIP LEVEL</button>
+                         <button class="btn" id="btn-restart-pause">RESTART</button>
+                         <button class="btn btn-danger" id="btn-menu-pause">QUIT</button>
+                     </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 7: Game Over Overlay -->
+            <div class="screen" id="game-over-screen">
+                <div class="glass-panel hud-overlay-card">
+                    <h2>CRASHED!</h2>
+                    
+                    <div class="stat-label-large">PROGRESS</div>
+                    <div class="stat-value-large" id="death-stat-percent">0%</div>
+
+                    <p id="death-stat-attempt">Attempt 1</p>
+
+                    <!-- Practice toggle on death -->
+                    <div class="setting-item" style="margin-bottom: 25px; width: 220px; margin-left: auto; margin-right: auto;">
+                        <span class="setting-label">PRACTICE MODE</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="practice-toggle-death">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                     <div class="revive-container" style="margin-bottom: 15px; width: 100%;">
+                         <button class="btn btn-success" id="btn-revive-death" style="width: 100%; padding: 12px 20px; font-size: 15.5px; font-weight: 900; background: linear-gradient(135deg, #00ff87 0%, #60efff 100%); border: none; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); color: #05040c; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 8px; cursor: pointer;">💚 REVIVE (3 🪙 / 📺 AD)</button>
+                     </div>
+
+                     <div class="button-group">
+                         <button class="btn btn-primary" id="btn-restart-death">RETRY</button>
+                         <button class="btn btn-warning" id="btn-skip-death">SKIP LEVEL</button>
+                         <button class="btn btn-danger" id="btn-menu-death">MENU</button>
+                     </div>
+
+                     <!-- CUSTOM REVIVE POPUP MODAL -->
+                     <div id="revive-modal" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,4,12,0.96); border-radius: 16px; flex-direction: column; justify-content: center; align-items: center; padding: 25px; box-sizing: border-box; z-index: 100;">
+                         <button id="btn-close-revive-modal" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1;">✕</button>
+                         <h3 style="color: #00ff87; margin: 0 0 10px 0; font-size: 20px; text-shadow: 0 0 15px rgba(0,255,135,0.4); font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase;">REVIVE OPTIONS</h3>
+                         <p style="font-size: 13px; margin: 0 0 25px 0; color: rgba(255,255,255,0.7); text-align: center; line-height: 1.5;">Select how you want to revive. You will spawn exactly 5 seconds before your crash site.</p>
+                         
+                         <button class="btn btn-success" id="btn-revive-use-coins" style="width: 100%; margin-bottom: 12px; padding: 12px 20px; font-weight: 900; font-size: 14px; border-radius: 8px; cursor: pointer;">🪙 USE 3 COINS</button>
+                         <button class="btn btn-primary" id="btn-revive-use-ad" style="width: 100%; padding: 12px 20px; font-weight: 900; font-size: 14px; border-radius: 8px; cursor: pointer; background: linear-gradient(135deg, #00f3ff 0%, #0078ff 100%);">📺 WATCH 5S AD</button>
+                     </div>
+
+                     <!-- HALL OF LEGENDS LEADERBOARD MODAL (LEVEL 500+ MASTERS) -->
+                      <div id="hall-of-legends-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,4,12,0.95); backdrop-filter: blur(10px); z-index: 10000; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;">
+                          <div style="background: #0c0b1a; border: 2px solid var(--neon-yellow); border-radius: 16px; padding: 25px; width: 500px; max-width: 95vw; box-shadow: 0 0 40px rgba(255,251,0,0.3); position: relative; text-align: center;">
+                              <button id="btn-close-legends-modal" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 24px; cursor: pointer;">✕</button>
+
+                              <h2 style="color: var(--neon-yellow); font-size: 22px; font-weight: 900; margin: 0 0 5px 0; text-shadow: 0 0 15px rgba(255,251,0,0.5); text-transform: uppercase;">👑 HALL OF LEGENDS 👑</h2>
+                              <p style="font-size: 12px; color: rgba(255,255,255,0.7); margin: 0 0 15px 0;" id="legends-subtitle">Official Leaderboard of Masters Who Crossed Level 500!</p>
+
+                              <!-- Master Rewards Announcement Banner (Shown on Level 510 completion) -->
+                              <div id="legends-reward-box" style="display: none; background: linear-gradient(135deg, rgba(0,255,135,0.15), rgba(0,243,255,0.15)); border: 1.5px solid #00ff87; border-radius: 12px; padding: 12px; margin-bottom: 15px; text-align: left;">
+                                  <div style="font-weight: 900; color: #00ff87; font-size: 13px; margin-bottom: 4px;">🎉 GRANDMASTER REWARDS CLAIMED!</div>
+                                  <div style="font-size: 11px; color: #fff; line-height: 1.4;">
+                                      • 💚 <strong>+100 Revives</strong> Added to inventory<br>
+                                      • ⏭️ <strong>+100 Level Skips</strong> Added to inventory<br>
+                                      • 🪙 <strong>+5,000 Neon Coins</strong> Added to balance<br>
+                                      • 🔓 <strong>Secret Shop Offer Unlocked:</strong> 10,000 Coins for $0.01 USD!<br>
+                                      • ♾️ <strong>Endless Mode:</strong> Now 100% FREE!
+                                  </div>
+                              </div>
+
+                              <!-- Leaderboard Table -->
+                              <div style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); border-radius: 10px; max-height: 200px; overflow-y: auto; margin-bottom: 15px; text-align: left;">
+                                  <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #fff;">
+                                      <thead>
+                                          <tr style="border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--neon-blue); font-weight: 800; font-size: 11px;">
+                                              <th style="padding: 8px 10px;">RANK</th>
+                                              <th style="padding: 8px 10px;">PLAYER</th>
+                                              <th style="padding: 8px 10px;">LEVEL</th>
+                                              <th style="padding: 8px 10px;">BADGE</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="legends-table-body">
+                                          <!-- Dynamic Leaderboard Rows -->
+                                      </tbody>
+                                  </table>
+                              </div>
+
+                              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                  <button class="btn" id="btn-legends-start-master" style="flex: 1; background: linear-gradient(135deg, #ff0055 0%, #ff5e00 100%); color: #fff; font-weight: 900; padding: 12px; font-size: 12px; border-radius: 8px; cursor: pointer; border: none;">⚔️ PLAY MASTER GAUNTLET (501–510)</button>
+                                  <button class="btn" id="btn-legends-play-endless" style="flex: 1; background: linear-gradient(135deg, #00f3ff 0%, #b000ff 100%); color: #fff; font-weight: 900; padding: 12px; font-size: 12px; border-radius: 8px; cursor: pointer; border: none;">♾️ PLAY ENDLESS MODE</button>
+                              </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 8: Level Win Overlay -->
+            <div class="screen" id="complete-screen">
+                <div class="glass-panel hud-overlay-card win">
+                    <h2>LEVEL COMPLETE!</h2>
+                    <h3 id="complete-level-name">Stereo Neon</h3>
+
+                    <div style="margin: 20px 0; display: flex; gap: 40px;">
+                        <div>
+                            <div class="stat-label-large" style="font-size: 16px;">ATTEMPTS</div>
+                            <div class="stat-value-large" id="complete-stat-attempts" style="font-size: 32px;">1</div>
+                        </div>
+                        <div>
+                            <div class="stat-label-large" style="font-size: 16px;">COINS</div>
+                            <div class="stat-value-large" id="complete-stat-coins" style="font-size: 32px; color: var(--neon-yellow); text-shadow: 0 0 10px rgba(255, 251, 0, 0.4);">3/3</div>
+                        </div>
+                    </div>
+
+                    <p>You have mastered the synchronization!</p>
+
+                    <div class="button-group">
+                        <button class="btn btn-success" id="btn-next-win" style="background: linear-gradient(135deg, #00ff87 0%, #60efff 100%); border: none; box-shadow: 0 0 12px rgba(0, 255, 135, 0.3); font-weight: 900; color: #05040c; cursor: pointer;">NEXT LEVEL</button>
+                        <button class="btn" id="btn-restart-win">REPLAY</button>
+                        <button class="btn btn-danger" id="btn-menu-win">MENU</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 9: Premium Purchase Modal -->
+            <div class="screen" id="premium-screen">
+                <!-- Center Balanced Single-Pane Checkout Modal -->
+                <div class="glass-panel checkout-modal-container" id="premium-checkout-panel" style="width: 480px; max-width: 95vw; padding: 25px 30px; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border-color: rgba(255,255,255,0.15);">
+                    <!-- Top-right Exit/Close Button -->
+                    <button id="btn-premium-close-top" class="checkout-close-btn" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 24px; cursor: pointer; transition: color 0.2s;">✕</button>
+
+                    <!-- Title -->
+                    <h3 style="color: var(--neon-blue); font-size: 22px; font-weight: 900; text-align: center; margin-top: 5px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; text-shadow: var(--shadow-glow-blue);">UPGRADE SHOP</h3>
+                    
+                    <!-- Product Details Card -->
+                    <div style="display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.03); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 12px 16px; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+                        <span id="summary-product-icon" style="font-size: 32px; background: rgba(0,243,255,0.08); border-radius: 12px; padding: 6px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">👑</span>
+                        <div style="flex: 1; text-align: left;">
+                            <div id="summary-product-name" style="font-weight: 800; font-size: 15px; color: #fff; line-height: 1.2;">Wave Dash Premium</div>
+                            <div id="summary-product-desc" style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Upgrade to Premium Account</div>
+                        </div>
+                        <div style="text-align: right; font-weight: 900; font-size: 18px; color: var(--neon-green); text-shadow: 0 0 8px rgba(57,255,20,0.3);" id="premium-price-tag">$0.99</div>
+                    </div>
+
+                    <!-- Hidden elements required by JS bindings to avoid errors -->
+                    <div style="display: none;">
+                        <span id="summary-product-price"></span>
+                        <span id="summary-subtotal"></span>
+                        <span id="summary-taxes"></span>
+                        <span id="summary-currency"></span>
+                        <div id="summary-added-accessories"></div>
+                        <input type="text" id="checkout-discount-input">
+                        <button id="btn-checkout-discount-apply"></button>
+                        <div id="discount-message"></div>
+                        <select id="checkout-country"><option value="IN">IN</option></select>
+                        <span id="checkout-email-display"></span>
+                        <button id="tab-pay-card"></button>
+                        <button id="tab-pay-upi"></button>
+                        <button id="tab-pay-paypal"></button>
+                    </div>
+
+                    <!-- Payment Choices List (Chess.com layout style) -->
+                    <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--text-muted); align-self: flex-start; margin-bottom: 8px; letter-spacing: 0.5px;">Select Payment Method</div>
+                    
+                    <div class="checkout-payment-choices" style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 20px; box-sizing: border-box;">
+                        <!-- Choice 1: PayPal/Card -->
+                        <div id="choice-paypal" class="payment-choice-card active" onclick="document.getElementById('tab-pay-paypal').click(); this.parentElement.querySelectorAll('.payment-choice-card').forEach(c => c.classList.remove('active')); this.classList.add('active');">
+                            <span style="font-size: 24px; background: rgba(0,243,255,0.08); border-radius: 10px; padding: 5px; line-height: 1; flex-shrink: 0;">💳</span>
+                            <div style="flex: 1; text-align: left;">
+                                <div style="font-weight: 800; font-size: 14px; color: #fff;">PayPal & Cards</div>
+                                <div style="font-size: 11px; color: var(--neon-blue); margin-top: 2px;">⏱️ Instant Unlock (10 seconds)</div>
+                            </div>
+                            <span class="choice-check" style="color: var(--neon-blue); font-size: 16px; font-weight: bold; margin-left: auto;">✓</span>
+                        </div>
+
+                        <!-- Choice 2: UPI -->
+                        <div id="choice-upi" class="payment-choice-card" onclick="document.getElementById('tab-pay-upi').click(); this.parentElement.querySelectorAll('.payment-choice-card').forEach(c => c.classList.remove('active')); this.classList.add('active');">
+                            <span style="font-size: 24px; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 5px; line-height: 1; flex-shrink: 0;">📱</span>
+                            <div style="flex: 1; text-align: left;">
+                                <div style="font-weight: 800; font-size: 14px; color: #fff;">UPI (GPay, Paytm, PhonePe)</div>
+                                <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">⏱️ Manual Unlock (1–2 hours)</div>
+                            </div>
+                            <span class="choice-check" style="color: var(--neon-blue); font-size: 16px; font-weight: bold; opacity: 0; margin-left: auto;">✓</span>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method Detail Panel -->
+                    <div class="method-detail-view" style="width: 100%; background: rgba(0,0,0,0.25); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 15px; margin-bottom: 20px; box-sizing: border-box;">
+                        <!-- PayPal Panel -->
+                        <div id="checkout-paypal-form" class="payment-form-content" style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%;">
+                            <p style="color: var(--text-muted); font-size: 11px; margin: 0; text-align: center; line-height: 1.4;">Pay securely using PayPal or any international Card. No PayPal account is required to pay with Credit/Debit cards.</p>
+                            <div id="paypal-button-container" style="width: 100%; min-height: 45px; margin-top: 5px;"></div>
+                        </div>
+
+                        <!-- UPI Panel -->
+                        <div id="checkout-upi-form" class="payment-form-content" style="display: none; flex-direction: column; align-items: center; gap: 12px; width: 100%;">
+                            <p style="color: var(--neon-yellow); font-size: 11px; font-weight: 700; margin: 0; text-align: center;">Scan with GPay, PhonePe, or Paytm to pay</p>
+                            <div style="background: #fff; border-radius: 16px; width: 140px; height: 140px; display: flex; justify-content: center; align-items: center; padding: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                                <img id="upi-qr-image" style="width: 100%; height: 100%; border-radius: 8px;" src="" alt="UPI QR Code">
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-muted); font-family: monospace;">UPI ID: <span id="upi-id-display" style="color: #fff; font-weight: 800;">wavedashgame@axl</span></div>
+                            <div style="display: flex; flex-direction: column; gap: 8px; width: 100%; box-sizing: border-box; margin-top: 4px;">
+                                <input type="text" id="checkout-upi-utr" class="checkout-input" placeholder="Enter 12-digit UPI Ref/UTR No." maxlength="12" style="text-align: center; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.15); padding: 8px; font-size: 13px; background: rgba(0,0,0,0.3); color: #fff;">
+                                <p style="font-size: 10px; color: var(--neon-pink); margin: 0; text-align: center; line-height: 1.3;">Once paid, enter your transaction number above and submit. We will verify and unlock it within 1-2 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions Agreement Checkbox -->
+                    <div style="display: flex; align-items: flex-start; gap: 8px; width: 100%; margin-top: 5px; margin-bottom: 15px; box-sizing: border-box; text-align: left;">
+                        <input type="checkbox" id="checkout-agree-terms" style="margin-top: 2px; cursor: pointer; accent-color: var(--neon-blue); width: 14px; height: 14px;">
+                        <label for="checkout-agree-terms" style="font-size: 11px; color: rgba(255,255,255,0.60); line-height: 1.4; cursor: pointer; user-select: none;">
+                            I agree to the <a href="#" id="link-checkout-terms" style="color: var(--neon-blue); text-decoration: underline; font-weight: bold;">Terms and Conditions</a>, Privacy Policy, and Refund Policy.
+                        </label>
+                    </div>
+
+                    <!-- Footer Action Buttons -->
+                    <div style="display: flex; gap: 12px; width: 100%; box-sizing: border-box;">
+                        <button class="btn btn-success" id="btn-pay-submit" style="flex: 1.2; border-radius: 12px; font-size: 13px; font-weight: 900; background: linear-gradient(135deg, #00ff87 0%, #60efff 100%); color: #000; height: 42px; display: none;">I HAVE PAID (SUBMIT UTR)</button>
+                        <button class="btn btn-danger" id="btn-premium-close" style="flex: 1; border-radius: 12px; font-size: 13px; font-weight: 800; height: 42px;">CANCEL</button>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Purchase Success -->
+                <div class="glass-panel hud-overlay-card win" id="premium-success-panel" style="border-color: var(--neon-green); box-shadow: var(--shadow-glow-green); width: 440px; display: none; border-radius: 24px; padding: 25px 30px;">
+                    <h2 style="font-size: 26px;">PURCHASE SUCCESSFUL!</h2>
+                    <div style="font-size: 50px; margin-bottom: 12px;">🌟</div>
+                    <p style="margin-bottom: 15px; font-size: 13px; text-align: center; line-height: 1.4;" id="checkout-success-desc">Thank you for your purchase!</p>
+                    
+                    <div id="coupon-display-box" style="display: none; background: rgba(0,0,0,0.6); border: 1.5px dashed var(--neon-green); border-radius: 8px; padding: 12px; margin-bottom: 20px; font-weight: 800; font-family: monospace; font-size: 16px; color: var(--neon-green); letter-spacing: 1px;">CODE: FREEPASS-XXXXXX</div>
+
+                    <button class="btn btn-success" id="btn-success-close" style="border-radius: 12px; font-size: 14px; font-weight: 800; height: 42px; padding: 0 25px;">LET'S FLY!</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 10: Mock Advertisement Screen -->
+            <div class="screen" id="ad-screen">
+                <div class="glass-panel hud-overlay-card" style="border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); width: 500px; padding: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 15px;">
+                        <span style="font-size: 12px; font-weight: 800; color: var(--neon-pink); background: rgba(255, 0, 127, 0.1); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--neon-pink);">ADVERTISEMENT</span>
+                        <span id="ad-timer" style="font-size: 14px; font-weight: 700; color: #fff;">Skip in 5s...</span>
+                    </div>
+
+                    <!-- Animated Ad Canvas/Content -->
+                    <div id="ad-content-box" style="width: 100%; height: 200px; background: #000; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <div id="ad-brand-title" style="font-size: 26px; font-weight: 900; color: #fff; text-shadow: 0 0 10px #00f3ff; margin-bottom: 5px; animation: pulseGlow 1s infinite alternate;">NEON RUNNER</div>
+                        <div id="ad-brand-desc" style="font-size: 13px; color: var(--text-muted); text-align: center; max-width: 80%;">Swipe to survive! Play for free today!</div>
+                        
+                        <!-- Mini Ad Progress bar -->
+                        <div style="position: absolute; bottom: 0; left: 0; height: 4px; background: var(--neon-pink); width: 0%;" id="ad-progress-bar"></div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px; width: 100%;">
+                        <button class="btn btn-primary" id="btn-ad-action" style="flex: 1; padding: 12px;">PLAY NOW</button>
+                        <button class="btn btn-danger" id="btn-ad-skip" style="flex: 1; padding: 12px; opacity: 0.5; cursor: not-allowed;" disabled>SKIP AD</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 11: Account Login / Registration & Profile Manager -->
+            <div class="screen" id="account-screen">
+                <!-- Slide A: Sign In -->
+                <div class="glass-panel hud-overlay-card" id="account-login-panel" style="border-color: var(--neon-blue); box-shadow: var(--shadow-glow-blue); width: 440px;">
+                    <h2>ACCOUNT LOGIN</h2>
+                    <p style="margin-bottom: 20px; font-size: 13px; color: var(--text-muted);">Access your premium membership from any browser</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px; width: 100%; text-align: left; margin-bottom: 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted);">USERNAME</label>
+                            <input type="text" id="login-username" placeholder="Enter your username" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; outline: none;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted);">PASSWORD</label>
+                            <input type="password" id="login-pass" placeholder="Enter password" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; outline: none;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--neon-yellow);">COUNTRY (COMPULSORY 🌍)</label>
+                            <select id="login-country" style="background: rgba(0,0,0,0.8); border: 1.5px solid var(--neon-yellow); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; font-size: 13px; outline: none; box-sizing: border-box; width: 100%;">
+                                <option value="" disabled selected>-- SELECT YOUR COUNTRY --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 15px;">
+                        <button class="btn btn-primary" id="btn-login-submit">SIGN IN</button>
+                        <button class="btn btn-danger" id="btn-login-close">CLOSE</button>
+                    </div>
+
+                    <p style="font-size: 13px; color: var(--text-muted); text-align: center;">Don't have an account? <span id="link-go-register" style="color: var(--neon-blue); cursor: pointer; text-decoration: underline; font-weight: 700;">Register Here</span></p>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 15px; text-align: center;">Or continue in <span id="link-guest-mode" style="color: var(--neon-blue); text-decoration: underline; cursor: pointer; font-weight: 700;">Guest Mode</span></p>
+                </div>
+
+                <!-- Slide B: Register -->
+                <div class="glass-panel hud-overlay-card" id="account-register-panel" style="border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(255, 0, 127, 0.3); width: 440px; display: none;">
+                    <h2>CREATE ACCOUNT</h2>
+                    <p style="margin-bottom: 20px; font-size: 13px; color: var(--text-muted);">Register to secure and sync your premium progress</p>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%; text-align: left; margin-bottom: 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted);">USERNAME</label>
+                            <input type="text" id="reg-name" placeholder="Choose username" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; outline: none;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted);">PASSWORD</label>
+                            <input type="password" id="reg-pass" placeholder="Create password (min 8 characters)" style="background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; outline: none;">
+                            <span style="font-size: 10px; color: var(--neon-pink); margin-top: 2px;">Password must be at least 8 characters</span>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <label style="font-size: 12px; font-weight: 700; color: var(--neon-yellow);">COUNTRY (COMPULSORY 🌍)</label>
+                            <select id="reg-country" style="background: rgba(0,0,0,0.8); border: 1.5px solid var(--neon-yellow); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; font-size: 13px; outline: none; box-sizing: border-box; width: 100%;">
+                                <option value="" disabled selected>-- SELECT YOUR COUNTRY --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 15px;">
+                        <button class="btn btn-primary" id="btn-register-submit" style="background: var(--neon-pink); border-color: var(--neon-pink); box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);">REGISTER NOW</button>
+                        <button class="btn btn-danger" id="btn-register-close">CLOSE</button>
+                    </div>
+
+                    <p style="font-size: 13px; color: var(--text-muted); text-align: center;">Already have an account? <span id="link-go-login" style="color: var(--neon-pink); cursor: pointer; text-decoration: underline; font-weight: 700;">Sign In Here</span></p>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 15px; text-align: center;">Or continue in <span id="link-guest-mode-reg" style="color: var(--neon-pink); text-decoration: underline; cursor: pointer; font-weight: 700;">Guest Mode</span></p>
+                </div>
+
+                <!-- Slide C: Profile Panel -->
+                <div class="glass-panel hud-overlay-card" id="account-profile-panel" style="border-color: var(--neon-green); box-shadow: var(--shadow-glow-green); width: 440px; display: none;">
+                    <h2>USER PROFILE</h2>
+                    <div style="font-size: 50px; margin-bottom: 10px;">🚀</div>
+                    
+                    <div style="width: 100%; border: 1px solid var(--panel-border); background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; text-align: left; display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                        <div><strong style="color: var(--text-muted);">USERNAME:</strong> <span id="prof-username" style="color: #fff; font-weight: 700;">User</span></div>
+                        <div><strong style="color: var(--text-muted);">EMAIL:</strong> <span id="prof-email" style="color: #fff; font-weight: 700;">user@mail.com</span></div>
+                        <div><strong style="color: var(--text-muted);">STATUS:</strong> <span id="prof-status" style="color: var(--neon-yellow); font-weight: 800; text-shadow: 0 0 8px rgba(255, 251, 0, 0.3);">FREE MEMBER</span></div>
+                        <div><strong style="color: var(--text-muted);">MATCHES PLAYED:</strong> <span id="prof-games-played" style="color: var(--neon-blue); font-weight: 700;">0</span></div>
+                    </div>
+
+                    <div id="guest-upgrade-banner" style="background: rgba(255, 0, 127, 0.08); border: 1px solid var(--neon-pink); border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; text-align: center; color: #fff; display: none;">
+                        <p style="margin-bottom: 8px;">You are playing on a temporary <strong>Guest Account</strong>. Create a real account to secure your progress!</p>
+                        <button class="btn btn-primary" id="btn-upgrade-guest" style="padding: 6px 12px; font-size: 12px; background: var(--neon-pink); border-color: var(--neon-pink);">UPGRADE TO FULL ACCOUNT</button>
+                    </div>
+
+                    <div id="prof-link-payment-box" style="display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; margin-bottom: 20px; border-top: 1px solid var(--panel-border); padding-top: 15px;">
+                        <label style="font-size: 12px; font-weight: 700; color: var(--neon-yellow);">LINK TRANSACTION REF ID</label>
+                        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 5px;">Enter the GPay Transaction Ref ID or Stripe checkout ID to unlock Premium</p>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="prof-payment-id" placeholder="e.g. STRIPE_CS_8829" style="flex: 1; background: rgba(0,0,0,0.6); border: 1px solid var(--panel-border); color: #fff; padding: 10px; border-radius: 8px; font-family: 'Outfit'; font-size: 13px; outline: none;">
+                            <button class="btn btn-success" id="btn-verify-id" style="padding: 10px 15px; font-size: 13px;">VERIFY</button>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                        <button class="btn btn-danger" id="btn-logout">LOG OUT</button>
+                        <button class="btn" id="btn-profile-close">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY SCREEN 12: Replay Ended Overlay -->
+            <div class="screen" id="replay-ended-screen">
+                <div class="glass-panel hud-overlay-card" style="border-color: var(--neon-yellow); box-shadow: var(--shadow-glow-yellow); width: 420px; box-sizing: border-box; text-align: center;">
+                    <h2 style="color: var(--neon-yellow); font-size: 26px; text-shadow: 0 0 10px rgba(255, 251, 0, 0.4); margin-bottom: 10px;">REPLAY ENDED 🎬</h2>
+                    <p style="margin-bottom: 25px; font-size: 13px; color: var(--text-muted); line-height: 1.5;">You have watched the full recording of this match run.</p>
+                    <button class="btn btn-primary" id="btn-exit-replay-ended" style="width: 100%; font-weight: 800; font-size: 14px; background: var(--neon-yellow); border-color: var(--neon-yellow); color: #000; box-shadow: 0 0 12px rgba(255, 251, 0, 0.35); padding: 12px;">PRESS HERE TO EXIT</button>
+                </div>
+            </div>
+            <!-- OVERLAY SCREEN 13: Game Update Modal -->
+            <div class="screen" id="update-screen">
+                <div class="glass-panel hud-overlay-card" style="border-color: var(--neon-pink); box-shadow: var(--shadow-glow-pink); width: 440px;">
+                    <h2>UPDATE AVAILABLE</h2>
+                    <p style="margin-bottom: 5px;">A new version of Wave Dash is available!</p>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 15px;">Your version: <span id="current-version-name" style="color: #fff; font-weight: 700;">1.2.0</span></p>
+                    
+                    <div id="update-info-box" style="text-align: left; width: 100%; margin-bottom: 20px; background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); max-height: 180px; overflow-y: auto; box-sizing: border-box;">
+                        <div style="font-size: 14px; font-weight: 800; color: var(--neon-blue); margin-bottom: 8px;">What's New in Version <span id="latest-version-name">1.1.0</span>:</div>
+                        <ul id="update-changelog" style="font-size: 13px; color: var(--text-main); padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+                            <li>New exciting track and obstacles added.</li>
+                            <li>Performance improvements and bug fixes.</li>
+                            <li>Enhanced particle effects and skins.</li>
+                        </ul>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="btn-update-download" style="font-size: 16px; padding: 10px 24px;">UPDATE NOW</button>
+                        <button class="btn btn-danger" id="btn-update-close" style="font-size: 16px; padding: 10px 24px;">LATER</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievement toast notification -->
+            <div id="achievement-toast">
+                <span class="toast-icon">🏆</span>
+                <div class="toast-content">
+                    <span class="toast-title">Achievement Unlocked!</span>
+                    <span class="toast-desc">Trophy description</span>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Level Unlock Modal (Top Level) -->
+            <div id="level-unlock-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.92); backdrop-filter: blur(8px); flex-direction: column; justify-content: center; align-items: center; z-index: 25000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 420px; max-width: 95vw; background: rgba(20, 20, 35, 0.95); border: 2px solid var(--neon-pink); border-radius: 16px; padding: 25px; box-shadow: 0 0 30px rgba(255, 0, 127, 0.3); text-align: center; box-sizing: border-box; pointer-events: auto;">
+                    <span id="btn-close-unlock-modal" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='#ff007f'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h3 id="unlock-modal-title" style="color: var(--neon-pink); margin: 0 0 8px 0; font-size: 22px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; text-shadow: 0 0 10px rgba(255,0,127,0.5);">🔓 UNLOCK ANY LEVEL</h3>
+                    <p id="unlock-modal-desc" style="font-size: 13px; margin: 0 0 20px 0; color: rgba(255,255,255,0.8); line-height: 1.4;">Select any level index (1 to 500) and unlock it permanently!</p>
+                    
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 12px; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+                        <span style="font-size: 13px; font-weight: 700; color: #fff;">SELECT LEVEL INDEX:</span>
+                        <input type="number" id="unlock-level-input" min="1" max="500" value="2" style="width: 85px; padding: 8px 10px; font-family: 'Outfit'; font-size: 18px; font-weight: 900; text-align: center; border-radius: 8px; border: 1.5px solid var(--neon-blue); background: rgba(0,0,0,0.6); color: var(--neon-yellow); outline: none; pointer-events: auto;">
+                    </div>
+
+                    <!-- Removed duplicate coupon input (payer can enter discount directly on checkout) -->
+
+                    <div style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                        <button class="btn btn-success" id="btn-unlock-use-coins" style="width: 100%; padding: 13px 20px; font-weight: 900; font-size: 14px; border-radius: 10px; cursor: pointer; background: linear-gradient(135deg, #00f3ff 0%, #0078ff 100%); border: none; color: #000; box-shadow: 0 0 12px rgba(0,243,255,0.3); pointer-events: auto;">🪙 UNLOCK FOR 20 COINS (BALANCE: <span id="unlock-modal-coins">0</span>)</button>
+                        <button class="btn btn-danger" id="btn-unlock-use-cash" style="width: 100%; padding: 13px 20px; font-weight: 900; font-size: 14px; border-radius: 10px; cursor: pointer; background: linear-gradient(135deg, var(--neon-pink) 0%, #ff0055 100%); border: none; color: #fff; box-shadow: 0 0 12px rgba(255,0,127,0.3); pointer-events: auto;">💳 UNLOCK INSTANTLY FOR $0.05</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Compulsory Country Select Modal (Top Level) -->
+            <div id="country-select-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.95); backdrop-filter: blur(10px); flex-direction: column; justify-content: center; align-items: center; z-index: 30000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 440px; max-width: 95vw; background: rgba(20, 20, 35, 0.96); border: 2px solid var(--neon-yellow); border-radius: 16px; padding: 25px; box-shadow: 0 0 35px rgba(255, 251, 0, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto;">
+                    <div style="font-size: 44px; margin-bottom: 5px;">🌍</div>
+                    <h3 style="color: var(--neon-yellow); margin: 0 0 8px 0; font-size: 22px; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase;">SELECT YOUR COUNTRY</h3>
+                    <p style="font-size: 13px; margin: 0 0 20px 0; color: rgba(255,255,255,0.85); line-height: 1.4;">Country selection is <strong>compulsory</strong> to customize game servers and show local currency prices.</p>
+                    
+                    <div style="margin-bottom: 20px; text-align: left;">
+                        <label style="font-size: 11px; font-weight: 800; color: var(--neon-yellow); display: block; margin-bottom: 6px;">CHOOSE YOUR COUNTRY *</label>
+                        <select id="modal-country-select" style="width: 100%; padding: 12px; font-family: 'Outfit'; font-size: 14px; font-weight: 700; border-radius: 10px; border: 1.5px solid var(--neon-yellow); background: rgba(0,0,0,0.85); color: #fff; outline: none; box-sizing: border-box; cursor: pointer; pointer-events: auto;">
+                            <option value="" disabled selected>-- SELECT YOUR COUNTRY --</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-confirm-country" style="width: 100%; padding: 14px 20px; font-weight: 900; font-size: 15px; border-radius: 10px; cursor: pointer; background: linear-gradient(135deg, var(--neon-yellow) 0%, #ffbb00 100%); border: none; color: #000; box-shadow: 0 0 20px rgba(255, 251, 0, 0.4); pointer-events: auto;">CONFIRM & START PLAYING 🚀</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Special Gift Card Modal -->
+            <div id="gift-card-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.96); backdrop-filter: blur(15px); flex-direction: column; justify-content: center; align-items: center; z-index: 35000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <style>
+                    @keyframes pulseGlowGold {
+                        0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); border-color: rgba(255, 215, 0, 0.6); }
+                        100% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.85); border-color: #ffd700; }
+                    }
+                    @keyframes giftBounce {
+                        0%, 100% { transform: translateY(0) scale(1); }
+                        50% { transform: translateY(-10px) scale(1.1); }
+                    }
+                </style>
+                <div style="position: relative; width: 450px; max-width: 95vw; background: linear-gradient(135deg, rgba(30, 20, 50, 0.98) 0%, rgba(15, 10, 30, 0.98) 100%); border: 3px solid rgba(255, 215, 0, 0.6); border-radius: 24px; padding: 35px 30px; text-align: center; box-sizing: border-box; pointer-events: auto; animation: pulseGlowGold 2s infinite alternate;">
+                    <div style="font-size: 70px; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255,215,0,0.7)); display: inline-block; animation: giftBounce 2s infinite ease-in-out;">🎁</div>
+                    <h2 style="color: #ffd700; margin: 0 0 8px 0; font-size: 26px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; text-shadow: 0 0 20px rgba(255,215,0,0.6); font-family: 'Outfit';">✨ EXCLUSIVE GIFT FOR YOU ✨</h2>
+                    
+                    <div id="gift-modal-desc-container" style="font-size: 15px; margin: 10px 0 25px 0; color: #fff; line-height: 1.6; font-weight: 700; font-family: 'Outfit';">
+                        You are gifted <span style="color: #ffd700; font-size: 22px; font-weight: 900;" id="gift-coin-amount">500</span> Coins from the <strong style="color: var(--neon-cyan);">Wave Dash Game</strong>! 🪙
+                    </div>
+
+                    <div style="background: rgba(255, 215, 0, 0.08); border: 2px dashed #ffd700; border-radius: 16px; padding: 18px; margin-bottom: 25px; box-shadow: inset 0 0 15px rgba(255, 215, 0, 0.05);">
+                        <span style="font-size: 11px; color: rgba(255,255,255,0.7); display: block; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-family: 'Outfit'; margin-bottom: 4px;">Verified Recipient:</span>
+                        <strong style="font-size: 19px; color: #00ffc4; letter-spacing: 0.8px; font-family: 'Outfit'; text-shadow: 0 0 10px rgba(0,255,196,0.3);" id="gift-recipient-name">Pooja-Gupta</strong>
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-claim-gift" style="width: 100%; padding: 16px 20px; font-weight: 900; font-size: 17px; border-radius: 14px; cursor: pointer; background: linear-gradient(135deg, #ffd700 0%, #ff8800 100%); border: none; color: #000; box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); pointer-events: auto; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'Outfit'; transition: transform 0.2s;">CLAIM YOUR 500 COINS NOW 🪙</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Redeem Golden Pass Modal -->
+            <div id="redeem-pass-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.95); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 36000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 440px; max-width: 95vw; background: linear-gradient(135deg, rgba(20, 30, 25, 0.98) 0%, rgba(5, 10, 8, 0.98) 100%); border: 2.5px solid var(--neon-green); border-radius: 20px; padding: 30px 25px; box-shadow: 0 0 45px rgba(0, 255, 135, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto;">
+                    <span id="btn-close-redeem-modal" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-green)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h2 style="color: var(--neon-green); margin: 0 0 6px 0; font-size: 23px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(0,255,135,0.5);">🎟️ REDEEM GOLDEN PASS</h2>
+                    <p style="font-size: 13px; margin: 0 0 15px 0; color: rgba(255,255,255,0.85); line-height: 1.4;">Scan the QR Code or enter the pass code below to unlock everything 100% FREE!</p>
+                    
+                    <!-- Real QR Code -->
+                    <div style="margin: 15px auto;">
+                        <img id="redeem-qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://wavedashgame-1.vercel.app/code.html" style="width: 140px; height: 140px; border-radius: 12px; border: 2.5px solid var(--neon-green); box-shadow: 0 0 20px rgba(0,255,135,0.4);" alt="Golden Pass QR Code">
+                    </div>
+                    
+                    <div style="font-size: 12px; color: var(--neon-green); font-weight: 900; margin-bottom: 20px; letter-spacing: 0.5px;">
+                        CODE NO: <span style="background: rgba(0,255,135,0.15); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--neon-green);">WAVEDASHFREEVIP123</span>
+                    </div>
+
+                    <div style="margin-bottom: 20px; text-align: left;">
+                        <label style="font-size: 11px; font-weight: 800; color: var(--neon-green); display: block; margin-bottom: 6px;">ENTER GOLDEN PASS CODE</label>
+                        <input type="text" id="pass-code-input" placeholder="PASTE CODE HERE" style="width: 100%; padding: 12px; font-family: 'Outfit'; font-size: 14px; font-weight: 800; border-radius: 10px; border: 1.5px solid var(--neon-green); background: rgba(0,0,0,0.85); color: #fff; outline: none; box-sizing: border-box; text-transform: uppercase; text-align: center; letter-spacing: 0.5px;">
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-submit-pass" style="width: 100%; padding: 14px 20px; font-weight: 900; font-size: 15px; border-radius: 10px; cursor: pointer; background: linear-gradient(135deg, var(--neon-green) 0%, #00d6aa 100%); border: none; color: #000; box-shadow: 0 0 20px rgba(0, 255, 135, 0.4); pointer-events: auto; letter-spacing: 0.5px;">ACTIVATE GOLDEN PASS 🎟️</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Daily Quests Modal -->
+            <div id="quests-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.95); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 38000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 440px; max-width: 95vw; background: linear-gradient(135deg, rgba(30, 20, 25, 0.98) 0%, rgba(10, 5, 8, 0.98) 100%); border: 2.5px solid var(--neon-pink); border-radius: 20px; padding: 25px 20px; box-shadow: 0 0 45px rgba(255, 0, 85, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto; display: flex; flex-direction: column; gap: 15px;">
+                    <span id="btn-quests-close" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-pink)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h2 style="color: var(--neon-pink); margin: 0; font-size: 21px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(255, 0, 85, 0.5);">📅 DAILY QUESTS</h2>
+                    <p style="font-size: 11px; margin: 0; color: rgba(255,255,255,0.5); line-height: 1.4;">Quests reset daily. Complete activities to earn bonus coins!</p>
+                    
+                    <div id="quests-reset-timer" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 14px; background: rgba(255, 0, 85, 0.08); border: 1px solid rgba(255, 0, 85, 0.25); border-radius: 10px; font-size: 12px; color: rgba(255,255,255,0.7);">
+                        <span style="font-size: 14px;">⏳</span>
+                        <span>Resets in: <b id="quests-timer-value" style="color: var(--neon-pink); font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);">--:--:--</b></span>
+                    </div>
+
+                    <div id="quests-list" style="display: flex; flex-direction: column; gap: 10px; text-align: left; max-height: 250px; overflow-y: auto; padding-right: 5px;">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Coin Investment Modal -->
+            <div id="invest-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.95); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 38000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 440px; max-width: 95vw; background: linear-gradient(135deg, rgba(20, 30, 25, 0.98) 0%, rgba(5, 10, 8, 0.98) 100%); border: 2.5px solid var(--neon-green); border-radius: 20px; padding: 25px; box-shadow: 0 0 45px rgba(0, 255, 135, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto;">
+                    <span id="btn-invest-close" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-green)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h2 style="color: var(--neon-green); margin: 0 0 10px 0; font-size: 21px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(0, 255, 135, 0.5);">📈 COIN INVESTMENT</h2>
+
+                    <!-- SCREEN A: Rules -->
+                    <div id="invest-screen-rules" style="display: block; text-align: left; font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.5;">
+                        <h4 style="color: #fff; margin-top: 0; margin-bottom: 8px;">INVESTMENT RULES:</h4>
+                        <ul style="padding-left: 20px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 6px;">
+                            <li>Invest coins to earn compounding hourly interest.</li>
+                            <li><strong>Under 24 hours:</strong> Earn <b style="color: var(--neon-green);">5% interest</b> every hour compounding.</li>
+                            <li><strong>24 hours or more:</strong> Earn <b style="color: var(--neon-green);">10% interest</b> every hour compounding!</li>
+                            <li style="color: var(--neon-pink);"><strong>Penalty:</strong> You cannot take your coins back early without paying a <b style="font-weight:900;">20% early-withdrawal fee</b> on your principal.</li>
+                        </ul>
+                        <button class="btn btn-primary" id="btn-invest-rules-next" style="width: 100%; padding: 12px; font-weight: 800; background: var(--neon-green); border: none; color: #000; border-radius: 10px; cursor: pointer; box-shadow: 0 0 12px rgba(0,255,135,0.4);">I UNDERSTAND, START INVESTING</button>
+                    </div>
+
+                    <!-- SCREEN B: Form -->
+                    <div id="invest-screen-form" style="display: none; text-align: left;">
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-size: 11px; font-weight: 800; color: var(--neon-green); display: block; margin-bottom: 6px;">HOW MANY COINS TO INVEST?</label>
+                            <input type="number" id="invest-amount-input" placeholder="Enter amount of coins" min="10" style="width: 100%; padding: 10px; font-family: 'Outfit'; font-size: 14px; font-weight: 800; border-radius: 8px; border: 1px solid var(--neon-green); background: rgba(0,0,0,0.8); color: #fff; box-sizing: border-box;">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 11px; font-weight: 800; color: var(--neon-green); display: block; margin-bottom: 6px;">ENTER LOCK DURATION (HOURS)</label>
+                            <input type="number" id="invest-duration-input" placeholder="Hours" min="1" max="720" value="24" style="width: 100%; padding: 10px; font-family: 'Outfit'; font-size: 14px; font-weight: 800; border-radius: 8px; border: 1px solid var(--neon-green); background: rgba(0,0,0,0.8); color: #fff; box-sizing: border-box;">
+                            <span style="font-size: 9px; color: rgba(255,255,255,0.45); display: block; margin-top: 4px;">Locked durations > 24 hours earn compounding 10% / hr; <= 24 hours earn 5% / hr.</span>
+                        </div>
+                        <button class="btn btn-success" id="btn-invest-start-confirm" style="width: 100%; padding: 12px; font-weight: 800; background: var(--neon-green); border: none; color: #000; border-radius: 10px; cursor: pointer; box-shadow: 0 0 12px rgba(0,255,135,0.4);">START INVESTMENT 📈</button>
+                    </div>
+
+                    <!-- SCREEN C: Active Investment status -->
+                    <div id="invest-screen-active" style="display: none; text-align: left; font-size: 12px; color: #fff;">
+                        <div style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: rgba(255,255,255,0.5);">Invested Principal:</span>
+                                <span style="font-weight:800;" id="invest-active-principal">100</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: rgba(255,255,255,0.5);">Hourly Interest Rate:</span>
+                                <span style="font-weight:800; color: var(--neon-green);" id="invest-active-rate">5%</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: rgba(255,255,255,0.5);">Lock Duration:</span>
+                                <span style="font-weight:800;" id="invest-active-duration">12 hrs</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 6px; margin-top: 4px;">
+                                <span style="color: rgba(255,255,255,0.5);">Current Value (Accrued):</span>
+                                <span style="font-weight:900; color: var(--neon-green);" id="invest-active-current">105</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: rgba(255,255,255,0.5);">Matured Value:</span>
+                                <span style="font-weight:900; color: var(--neon-yellow);" id="invest-active-target">180</span>
+                            </div>
+                        </div>
+
+                        <div id="invest-active-time" style="text-align: center; margin-bottom: 15px; font-size: 13px; color: rgba(255,255,255,0.85);">
+                            Lock Time Left: <b>11h 59m 59s</b>
+                        </div>
+
+                        <button class="btn btn-danger" id="btn-invest-action" style="width: 100%; padding: 12px; font-weight: 800; background: #ff0055; border: none; color: #fff; border-radius: 10px; cursor: pointer; box-shadow: 0 0 10px rgba(255,0,85,0.3); text-align: center;">WITHDRAW EARLY (20% fee)</button>
+
+                        <!-- Time adjustment / Debug section -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Endless Mode Config Modal -->
+            <div id="endless-config-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.96); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 37000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 500px; max-width: 95vw; background: linear-gradient(135deg, rgba(20, 25, 35, 0.98) 0%, rgba(5, 10, 15, 0.98) 100%); border: 2.5px solid var(--neon-blue); border-radius: 20px; padding: 35px 30px; box-shadow: 0 0 45px rgba(0, 243, 255, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto;">
+                    <span id="btn-close-endless-config" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-blue)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h2 style="color: var(--neon-blue); margin: 0 0 6px 0; font-size: 23px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(0,243,255,0.5);">♾️ ENDLESS SETTINGS</h2>
+                    <p style="font-size: 13px; margin: 0 0 20px 0; color: rgba(255,255,255,0.85); line-height: 1.4;">Configure speed modifier and select map for your endless run.</p>
+                    
+                    <!-- Speed Selection -->
+                    <div style="margin-bottom: 20px; text-align: left;">
+                        <label style="font-size: 11px; font-weight: 800; color: var(--neon-blue); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">1. CHOOSE SPEED MODIFIER</label>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn endless-speed-btn" data-speed="1.0" style="flex: 1; padding: 10px; font-weight: 900; font-size: 12px; border-radius: 8px; cursor: pointer; background: rgba(0,243,255,0.25); border: 1.5px solid var(--neon-blue); color: #fff; text-align: center;">1.0x (Normal)</button>
+                            <button class="btn endless-speed-btn" data-speed="1.25" style="flex: 1; padding: 10px; font-weight: 900; font-size: 12px; border-radius: 8px; cursor: pointer; background: rgba(0,0,0,0.6); border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); text-align: center;">1.25x (Fast)</button>
+                            <button class="btn endless-speed-btn" data-speed="1.5" style="flex: 1; padding: 10px; font-weight: 900; font-size: 12px; border-radius: 8px; cursor: pointer; background: rgba(0,0,0,0.6); border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); text-align: center;">1.5x (Sonic)</button>
+                            <button class="btn endless-speed-btn" data-speed="2.0" style="flex: 1; padding: 10px; font-weight: 900; font-size: 12px; border-radius: 8px; cursor: pointer; background: rgba(0,0,0,0.6); border: 1.5px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6); text-align: center;">2.0x (Hyper)</button>
+                        </div>
+                    </div>
+
+                    <!-- Map Selection -->
+                    <div style="margin-bottom: 25px; text-align: left;">
+                        <label style="font-size: 11px; font-weight: 800; color: var(--neon-blue); display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">2. SELECT MAP (5 UNLOCKED / 5 LOCKED)</label>
+                        <div id="endless-maps-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-height: 220px; overflow-y: auto; padding-right: 5px;">
+                            <!-- Will be dynamically populated by Javascript -->
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="btn-start-endless-play" style="width: 100%; padding: 15px 20px; font-weight: 900; font-size: 16px; border-radius: 12px; cursor: pointer; background: linear-gradient(135deg, var(--neon-blue) 0%, #0078ff 100%); border: none; color: #fff; box-shadow: 0 0 25px rgba(0, 243, 255, 0.4); pointer-events: auto; letter-spacing: 1px; text-transform: uppercase;">START ENDLESS RUN 🚀</button>
+                </div>
+            </div>
+
+            <!-- OVERLAY: Shop Purchase & Coupon Modal -->
+            <div id="shop-purchase-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.95); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 38000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+                <div style="position: relative; width: 440px; max-width: 95vw; background: linear-gradient(135deg, rgba(20, 24, 38, 0.98) 0%, rgba(5, 8, 15, 0.98) 100%); border: 2.5px solid var(--neon-blue); border-radius: 20px; padding: 30px 25px; box-shadow: 0 0 45px rgba(0, 243, 255, 0.4); text-align: center; box-sizing: border-box; pointer-events: auto; font-family: 'Outfit';">
+                    <span id="btn-close-shop-purchase-modal" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-blue)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+                    <h2 id="purchase-modal-title" style="color: var(--neon-blue); margin: 0 0 6px 0; font-size: 22px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(0,243,255,0.5);">🛒 PURCHASE ITEM</h2>
+                    
+                    <div id="purchase-modal-plan-desc" style="font-size: 13px; margin: 15px 0; color: rgba(255,255,255,0.85); line-height: 1.5; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; text-align: left;">
+                        <!-- Filled in dynamically -->
+                    </div>
+
+                    <!-- Price displays -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 10px;">
+                        <span style="font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 700;">PRICE:</span>
+                        <span id="purchase-modal-price" style="font-size: 18px; color: #fff; font-weight: 900;">$0.00</span>
+                    </div>
+
+                    <!-- Removed duplicate coupon input (payer can enter discount directly on checkout) -->
+
+                    <button class="btn btn-primary" id="btn-confirm-shop-purchase" style="width: 100%; padding: 14px 20px; font-weight: 900; font-size: 14px; border-radius: 10px; cursor: pointer; background: linear-gradient(135deg, var(--neon-blue) 0%, #0078ff 100%); border: none; color: #fff; box-shadow: 0 0 20px rgba(0, 243, 255, 0.3); pointer-events: auto; letter-spacing: 0.5px; text-transform: uppercase;">PROCEED TO SECURE CHECKOUT 🚀</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script loading modules in sequence -->
+    <script src="audio.js?v=32"></script>
+    <script src="particles.js?v=32"></script>
+    <script src="physics.js?v=32"></script>
+    <script src="player.js?v=32"></script>
+    <script src="level.js?v=32"></script>
+    <script src="ui.js?v=32"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="admob.js?v=32"></script>
+    <script src="game.js?v=32"></script>
+    <script>
+        // Automatic click script and Canvas Gameplay Recorder for autoplay trailer
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('autoplay') === '1') {
+            
+            // Wait for window/DOM to load fully
+            window.addEventListener('load', () => {
+                const canvas = document.getElementById('gameCanvas');
+                if (!canvas) {
+                    console.error("Canvas element not found!");
+                    return;
+                }
+                
+                // Start recording immediately
+                print = console.log;
+                print("Starting canvas recorder...");
+                const chunks = [];
+                const stream = canvas.captureStream(30); // 30 FPS
+                
+                let options = { mimeType: 'video/webm;codecs=vp9' };
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options = { mimeType: 'video/webm;codecs=vp8' };
+                }
+                if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+                    options = { mimeType: 'video/webm' };
+                }
+                
+                const recorder = new MediaRecorder(stream, options);
+                
+                recorder.ondataavailable = (e) => {
+                    if (e.data && e.data.size > 0) {
+                         chunks.push(e.data);
+                    }
+                };
+                
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    const isPortrait = window.innerHeight > window.innerWidth;
+                    a.download = isPortrait ? 'portrait_gameplay.webm' : 'landscape_gameplay.webm';
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);
+                    }, 100);
+                    print("Recording downloaded successfully!");
+                };
+                
+                // Start recording
+                recorder.start();
+                print("MediaRecorder started.");
+                
+                // Timeline of Auto-Navigation Actions:
+                
+                // 1. Dismiss Country Modal (if present) after 1 second
+                setTimeout(() => {
+                    const countryBtn = document.getElementById('btn-confirm-country');
+                    if (countryBtn) {
+                        print("Auto-clicking country confirmation...");
+                        countryBtn.click();
+                    }
+                }, 1000);
+                
+                // 2. Click main "PLAY" button after 4 seconds (so we show the menu for 3 seconds)
+                setTimeout(() => {
+                    const playBtn = document.getElementById('btn-play');
+                    if (playBtn) {
+                        print("Auto-clicking Play button...");
+                        playBtn.click();
+                    }
+                }, 4000);
+                
+                // 3. Click "Level 1" card after 7 seconds (so we show the Level Select screen for 3 seconds)
+                setTimeout(() => {
+                    const lvlCard = document.getElementById('level-card-1');
+                    if (lvlCard) {
+                        print("Auto-clicking Level 1 card...");
+                        lvlCard.click();
+                    }
+                }, 7000);
+                
+                // 4. Stop recording after 25 seconds total (which gives 18 seconds of actual gameplay)
+                setTimeout(() => {
+                    print("Stopping recorder...");
+                    recorder.stop();
+                }, 25000);
+                
+            });
+        }
+    </script>
+
+    <!-- OVERLAY: Legal Policies & Contact Modal -->
+    <div id="policies-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,4,12,0.96); backdrop-filter: blur(12px); flex-direction: column; justify-content: center; align-items: center; z-index: 38000; padding: 20px; box-sizing: border-box; pointer-events: auto;">
+        <div style="position: relative; width: 620px; max-width: 95vw; background: linear-gradient(135deg, rgba(20, 20, 30, 0.98) 0%, rgba(5, 5, 10, 0.98) 100%); border: 2.5px solid var(--neon-yellow); border-radius: 20px; padding: 30px 25px; box-shadow: 0 0 45px rgba(255, 230, 0, 0.3); text-align: left; box-sizing: border-box; pointer-events: auto; display: flex; flex-direction: column; max-height: 90vh;">
+            <span id="btn-close-policies-modal" style="position: absolute; top: 15px; right: 20px; color: rgba(255,255,255,0.6); font-size: 24px; cursor: pointer; transition: color 0.2s; line-height: 1; z-index: 10; pointer-events: auto;" onmouseover="this.style.color='var(--neon-yellow)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">✕</span>
+            
+            <h2 style="color: var(--neon-yellow); margin: 0 0 15px 0; font-size: 20px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 15px rgba(255,230,0,0.4); text-align: center; font-family: 'Outfit';">📜 LEGAL POLICIES & CONTACT</h2>
+            
+            <!-- Tabs Header -->
+            <div style="display: flex; gap: 6px; margin-bottom: 15px; border-bottom: 1.5px solid rgba(255,255,255,0.1); padding-bottom: 8px; flex-wrap: wrap; font-family: 'Outfit';">
+                <button class="btn-policy-tab active" data-tab="privacy" style="flex: 1; padding: 8px 10px; font-size: 10px; font-weight: 800; border-radius: 8px; background: rgba(255, 230, 0, 0.15); color: #fff; border: 1.5px solid var(--neon-yellow); cursor: pointer; text-transform: uppercase; outline: none; font-family: inherit;">Privacy Policy</button>
+                <button class="btn-policy-tab" data-tab="terms" style="flex: 1; padding: 8px 10px; font-size: 10px; font-weight: 800; border-radius: 8px; background: rgba(0,0,0,0.5); color: #aaa; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-transform: uppercase; outline: none; font-family: inherit;">Terms of Service</button>
+                <button class="btn-policy-tab" data-tab="refund" style="flex: 1; padding: 8px 10px; font-size: 10px; font-weight: 800; border-radius: 8px; background: rgba(0,0,0,0.5); color: #aaa; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-transform: uppercase; outline: none; font-family: inherit;">Refund Policy</button>
+                <button class="btn-policy-tab" data-tab="contact" style="flex: 1; padding: 8px 10px; font-size: 10px; font-weight: 800; border-radius: 8px; background: rgba(0,0,0,0.5); color: #aaa; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; text-transform: uppercase; outline: none; font-family: inherit;">Contact Us</button>
+            </div>
+            
+            <!-- Content Container -->
+            <div id="policy-content" style="flex: 1; overflow-y: auto; color: rgba(255,255,255,0.85); font-size: 13px; line-height: 1.6; padding-right: 5px; max-height: 50vh; font-family: 'Outfit';">
+                <!-- Content will be injected dynamically by script -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to control Policies Modal -->
+    <script>
+        (function() {
+            const modal = document.getElementById('policies-modal');
+            const contentBox = document.getElementById('policy-content');
+            const tabs = document.querySelectorAll('.btn-policy-tab');
+            const closeBtn = document.getElementById('btn-close-policies-modal');
+
+            const policiesData = {
+                privacy: `
+                    <h3 style="color: var(--neon-yellow); margin-top: 0;">PRIVACY POLICY</h3>
+                    <p>Last updated: July 29, 2026</p>
+                    <p>At Wave Dash, accessible from https://wavedashgame-1.vercel.app, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Wave Dash and how we use it.</p>
+                    <strong>1. Information Collection and Use</strong>
+                    <p>To enable score synchronization and profile recovery, we collect your username and password (which is stored securely in our Google Firebase database). We do not require any other personal identification like real names, phone numbers, or email addresses unless you contact us directly.</p>
+                    <strong>2. Payment Processing (PayPal)</strong>
+                    <p>All virtual coin purchases and premium membership updates are handled securely via our payment gateway partner, <strong>PayPal</strong>. We do NOT collect, save, or have access to any of your financial information (credit card numbers, bank credentials, or UPI details). PayPal processes all transactions independently and securely.</p>
+                    <strong>3. Cookies and Log Files</strong>
+                    <p>Wave Dash uses standard local storage and cache to remember your game saves, skins, high scores, and settings. We do not use tracking cookies for advertising profiling.</p>
+                    <strong>4. Contact Information</strong>
+                    <p>If you have any questions about our privacy policies, please contact us at <strong>khadariasian@gmail.com</strong>.</p>
+                `,
+                terms: `
+                    <h3 style="color: var(--neon-yellow); margin-top: 0;">TERMS AND CONDITIONS</h3>
+                    <p>Last updated: July 29, 2026</p>
+                    <p>These terms and conditions outline the rules and regulations for the use of Wave Dash, located at https://wavedashgame-1.vercel.app.</p>
+                    <strong>1. Acceptance of Terms</strong>
+                    <p>By accessing this website, we assume you accept these terms and conditions in full. Do not continue to play Wave Dash if you do not agree to all of the terms and conditions stated on this page.</p>
+                    <strong>2. Intellectual Property</strong>
+                    <p>Unless otherwise stated, Wave Dash and/or its licensors own the intellectual property rights for all material, code, audio synthesis, and design on Wave Dash. All intellectual property rights are reserved.</p>
+                    <strong>3. User Accounts and Game Saves</strong>
+                    <p>Your level progress and score history are securely synchronized to our cloud Google Firebase database when you are logged in. While we make every effort to preserve your cloud data, users are responsible for keeping their passwords secure. We are not liable for any lost progress due to forgotten credentials or clearing local browser caches while offline.</p>
+                    <strong>4. Purchases and Virtual Currency</strong>
+                    <p>All in-game purchases (Coins, Pass, Skins) are final, have no real-world monetary value, and cannot be exchanged for physical cash or goods.</p>
+                `,
+                refund: `
+                    <h3 style="color: var(--neon-yellow); margin-top: 0;">REFUND AND CANCELLATION POLICY</h3>
+                    <p>Last updated: July 29, 2026</p>
+                    <p>Thank you for playing and purchasing upgrades in Wave Dash.</p>
+                    <strong>1. Digital Goods Delivery</strong>
+                    <p>All items sold inside Wave Dash (such as Coins, Game History key, or Golden Pass upgrade) are intangible digital assets. They are delivered instantly and automatically to your local game profile upon successful payment validation by PayPal.</p>
+                    <strong>2. Refund Eligibility</strong>
+                    <p>Due to the instant delivery nature of digital goods, all purchases are generally **non-refundable** once the transaction is marked successful by the gateway.</p>
+                    <strong>3. Technical Errors & Support</strong>
+                    <p>If you experience any technical difficulties where your payment was successful but the items did not credit to your profile, please contact us at <strong>khadariasian@gmail.com</strong> within 7 days of the purchase. Provide your transaction reference ID, and we will verify the transaction logs to manually credit the items or issue a full refund where applicable.</p>
+                `,
+                contact: `
+                    <h3 style="color: var(--neon-yellow); margin-top: 0;">CONTACT US</h3>
+                    <p>For any issues, payment queries, or general support, you can reach out to us using the details below:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 10px 0; font-weight: bold; width: 120px; color: var(--neon-yellow);">Merchant Name:</td>
+                            <td style="padding: 10px 0;">Saniya Goyal (Sian Goyal)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 10px 0; font-weight: bold; color: var(--neon-yellow);">Support Email:</td>
+                            <td style="padding: 10px 0;"><a href="mailto:khadariasian@gmail.com" style="color: var(--neon-blue); text-decoration: none;">khadariasian@gmail.com</a></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 10px 0; font-weight: bold; color: var(--neon-yellow);">Address:</td>
+                            <td style="padding: 10px 0;">Rajasthan, India</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 0; font-weight: bold; color: var(--neon-yellow);">Operating Hours:</td>
+                            <td style="padding: 10px 0;">
+                                Mon - Sat: 6:00 AM - 7:30 AM & 2:30 PM - 10:00 PM IST<br>
+                                Sun: 8:00 AM - 10:00 PM IST
+                            </td>
+                        </tr>
+                        <tr style="border-top: 1px solid rgba(255,255,255,0.1);">
+                            <td style="padding: 10px 0; font-weight: bold; color: var(--neon-yellow);">Response Time:</td>
+                            <td style="padding: 10px 0;">Queries will be answered within 10 hours.</td>
+                        </tr>
+                    </table>
+                `
+            };
+
+            function showTab(tabName) {
+                // Update tab buttons style
+                tabs.forEach(tab => {
+                    if (tab.dataset.tab === tabName) {
+                        tab.style.background = 'rgba(255, 230, 0, 0.15)';
+                        tab.style.color = '#fff';
+                        tab.style.borderColor = 'var(--neon-yellow)';
+                    } else {
+                        tab.style.background = 'rgba(0,0,0,0.5)';
+                        tab.style.color = '#aaa';
+                        tab.style.borderColor = 'rgba(255,255,255,0.1)';
+                    }
+                });
+                // Update content
+                contentBox.innerHTML = policiesData[tabName] || '';
+                contentBox.scrollTop = 0;
+            }
+
+            // Click handlers for the footer links & checkout terms link
+            document.addEventListener('click', function(e) {
+                if (e.target && (e.target.id === 'link-privacy' || e.target.id === 'link-terms' || e.target.id === 'link-refund' || e.target.id === 'link-contact' || e.target.id === 'link-checkout-terms')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const tabType = e.target.id === 'link-checkout-terms' ? 'terms' : e.target.id.replace('link-', '');
+                    modal.style.display = 'flex';
+                    showTab(tabType);
+                }
+            });
+
+            // Tab button clicks
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showTab(this.dataset.tab);
+                });
+            });
+
+            // Close modal click
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                modal.style.display = 'none';
+            });
+
+            // Close on background click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        })();
+    </script>
+
+</body>
+</html>

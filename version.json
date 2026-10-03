@@ -1,0 +1,14 @@
+{
+  "version": "1.3.0",
+  "url": "https://wavedashgame-1.vercel.app/download.html",
+  "changelog": [
+    "💚 Revive system: respawn 5 sec before crash with 3-2-1 countdown!",
+    "🛒 Revive packs in shop: 5 revives for $0.10, 10 revives for $0.15 (save 25%!)",
+    "➡️ Next Level button: jump straight to next level after winning!",
+    "🎯 Level index fixed: Next Level now correctly loads the right level!",
+    "🧱 Impossible gaps removed: all caverns now guaranteed passable!",
+    "❌ Removed Premium instant-skip level perk.",
+    "🏷️ Level number shown in HUD during gameplay.",
+    "🔢 Level selector shows clean numbered squares with lock icons."
+  ]
+}
