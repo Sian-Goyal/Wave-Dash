@@ -2,7 +2,8 @@
 // CONFIGURATION: Set your real payment destinations here!
 // -----------------------------------------------------------------
 window.UPI_PAYMENT_ID = "wavedashgame-1@axl"; // Configured UPI ID
-window.TEBEX_STORE_URL = "https://wave-dash.tebex.store"; // Tebex Store Subdomain URL
+window.TEBEX_STORE_URL = "https://wavedash.tebex.io";
+
 window.TEBEX_PACKAGE_IDS = {
     'tickets-100': '7645509',
     'tickets-500': '7645511',
